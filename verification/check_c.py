@@ -36,6 +36,10 @@ def main() -> int:
     for name, block in mx.render().items():
         if block not in t:
             errs.append(f"{name}: differs from a fresh rendering; rerun make_c_exhibits.py and paste it")
+    # 1a. the sentences naming excluded and comparison countries, with reasons
+    for name, sentence in mx.sentences().items():
+        if sentence not in t:
+            errs.append(f"{name} sentence differs from make_c_exhibits.sentences(): {sentence!r}")
 
     # 2. prose numbers
     a, w, ph = R["all"], R["without_india"], R["posthoc_blank_grants"]

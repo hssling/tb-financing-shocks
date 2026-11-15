@@ -218,12 +218,42 @@ def possibly_restated(r: dict) -> list[str]:
     return [s for s in SOURCES if r[f"{s}_2025"] and r[f"{s}_2024"] == r[f"{s}_2025"]]
 
 
+def exclusion_reasons(iso3: str) -> list[tuple[int, str]]:
+    """Every condition of the primary population that a country fails, as
+    (year, code). Codes: 'no record', 'nothing by source' (all four sources
+    blank), 'blank:<source>', 'total missing', 'total printed as zero' (sources
+    sum to more), 'sum' (sources do not sum to the total within 1%), and
+    'label' (WHO does not label the year as reported data)."""
+    P = public()
+    out: list[tuple[int, str]] = []
+    for year in (2024, 2025):
+        rec = P.get((iso3, year))
+        if rec is None:
+            out.append((year, "no record")); continue
+        blank = [s for s in SOURCES if rec[s] is None]
+        if len(blank) == len(SOURCES):
+            out.append((year, "nothing by source"))
+        else:
+            out += [(year, f"blank:{s}") for s in blank]
+        given = sum(rec[s] or 0 for s in SOURCES)
+        if rec["total"] is None:
+            out.append((year, "total missing"))
+        elif rec["total"] == 0 and given > 0:
+            out.append((year, "total printed as zero"))
+        elif not blank and not complete(rec):
+            out.append((year, "sum"))
+        if not reported(iso3, year):
+            out.append((year, "label"))
+    return out
+
+
 def results() -> dict:
     verify_inputs()
     rows = country_rows()
     pops = populations()
     return {
         "populations": pops,
+        "exclusion_reasons": {c: exclusion_reasons(c) for c in pops["excluded"]},
         "rows": rows,
         "all": summary(rows),
         "without_india": summary(rows, ("IND",)),

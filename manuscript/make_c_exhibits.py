@@ -79,6 +79,67 @@ def render() -> dict[str, str]:
     return {"Table 1": table1(R), "Table 2": table2(R)}
 
 
+# --- sentences that name countries (RECORD item 13.1: exclusions and reasons) ---
+NUMBER = "zero one two three four five six seven eight nine ten eleven twelve".split()
+THE = ("Central African Republic", "Democratic Republic", "United Republic", "Republic of", "Syrian Arab",
+       "Lao People", "Congo", "Philippines")
+
+
+def the(name: str) -> str:
+    return f"the {name}" if name.startswith(THE) else name
+
+
+def series(names: list[str]) -> str:
+    names = [the(n) for n in names]
+    return names[0] if len(names) == 1 else ", ".join(names[:-1]) + " and " + names[-1]
+
+
+def reason_phrase(reasons: list[tuple[int, str]], iso3: str) -> str:
+    """Plain-language reason, built only from the failing conditions the code found.
+    The 'reported data' label is mentioned only when nothing else failed."""
+    core = [(y, r) for y, r in reasons if r != "label"] or reasons
+    years = lambda code: sorted({y for y, r in core if r == code})
+    yrs = lambda ys: " and ".join(str(y) for y in ys)
+    parts = []
+    if years("no record"):
+        parts.append(f"had no record for {yrs(years('no record'))}")
+    if years("nothing by source"):
+        parts.append(f"reported no funding by source for {yrs(years('nothing by source'))}")
+    for s in c.SOURCES:
+        if years(f"blank:{s}"):
+            label = "other grants" if s == "grnt" else f"{c.LABEL[s]} funding"
+            parts.append(f"left {label} blank for {yrs(years(f'blank:{s}'))}")
+    if years("total missing"):
+        parts.append(f"left the total blank for {yrs(years('total missing'))}")
+    if years("sum"):
+        parts.append(f"reported sources that did not sum to the total for {yrs(years('sum'))}")
+    if years("total printed as zero"):
+        y = years("total printed as zero")[0]
+        rec = c.public()[(iso3, y)]
+        given = sum(rec[s] or 0 for s in c.SOURCES)
+        parts.append(f"printed a {y} total of zero although its sources sum to US$ {given / 1e6:,.1f} million")
+    if years("label"):
+        parts.append(f"was not labelled by WHO as reported data for {yrs(years('label'))}")
+    return parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + " and " + parts[-1]
+
+
+def sentences() -> dict[str, str]:
+    R = c.results()
+    P = c.public()
+    name = lambda iso: P[(iso, 2024)]["country"]
+    admitted = {r["iso3"] for r in R["posthoc_blank_grants_rows"]}
+    others = [iso for iso in R["populations"]["excluded"] if iso not in admitted]
+    groups: dict[str, list[str]] = {}
+    for iso in sorted(others, key=name):
+        groups.setdefault(reason_phrase(R["exclusion_reasons"][iso], iso), []).append(name(iso))
+    clauses = [f"{series(n)} {p}" for p, n in sorted(groups.items(), key=lambda kv: (-len(kv[1]), kv[1][0]))]
+    excl = (f"Of the {NUMBER[len(others)]} excluded for other reasons, "
+            + ("; ".join(clauses[:-1]) + "; and " + clauses[-1] if len(clauses) > 1 else clauses[0]) + ".")
+    comp = "The comparison countries were " + series(sorted((name(i) for i in R["populations"]["comparison"]),
+                                                             key=lambda n: n.removeprefix("the "))) + "."
+    return {"exclusions": excl, "comparison": comp}
+
+
 def main() -> int:
     b = render()
     OUT.write_text("\n\n".join(b.values()) + "\n", encoding="utf-8")
