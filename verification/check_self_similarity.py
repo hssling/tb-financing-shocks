@@ -4,6 +4,8 @@ Reuses the shingle method of the companion project's screen
 (../provenance_weighting/verification/check_self_similarity.py) by import, so
 both projects measure overlap identically. Fails on any verbatim run of 40 or
 more words outside reference lists; reports the share of 8-word shingles shared.
+Also fails if a cover letter's "no shared passage longer than N words" is not
+the longest run this screen finds for that paper.
 
 Usage: python -I verification/check_self_similarity.py
 """
@@ -35,11 +37,16 @@ def longest_run(a: list[str], b_shingles: set) -> int:
     return best
 
 
+LETTERS = {ROOT / "manuscript" / "manuscript_c.md": ROOT / "submission" / "paper_c" / "02_cover_letter.md",
+           ROOT / "manuscript" / "paper_d_letter.md": ROOT / "submission" / "paper_d" / "02_cover_letter.md"}
+
+
 def main() -> int:
     fail = False
     for tname, tpath in TARGETS:
         if not tpath.exists():
             continue
+        longest = 0
         words = ss.normalise(ss.body_only(ss.read_any(tpath)))
         tsh = ss.shingles(words)
         print(f"{tname}: {len(words):,} words, {len(tsh):,} distinct 8-grams")
@@ -57,9 +64,19 @@ def main() -> int:
             print(f"   {sname:<44} {len(shared):>5} shared  {100 * len(shared) / len(tsh):5.1f}%  "
                   f"longest run {run} words")
             fail |= run >= ss.LONG_RUN
+            longest = max(longest, run)
         print(f"   {'COMBINED':<44} {len(union):>5} shared  {100 * len(union) / len(tsh):5.1f}%")
-    print("FAILED: a verbatim run of 40+ words" if fail else
-          "PASSED: no verbatim run of 40+ words outside reference lists")
+        # the cover letter quotes the longest shared run; it must be this run
+        letter = LETTERS.get(tpath)
+        if letter and letter.exists():
+            import re
+            m = re.search(r"no shared passage longer than (\d+) words", letter.read_text(encoding="utf-8"))
+            if not m or int(m.group(1)) != longest:
+                print(f"   COVER LETTER {letter.parent.name}: states "
+                      f"{m.group(1) + ' words' if m else 'no figure'}, the screen finds {longest}")
+                fail = True
+    print("FAILED: a verbatim run of 40+ words, or a cover letter misstating the longest run" if fail else
+          "PASSED: no verbatim run of 40+ words outside reference lists; cover letters state the longest run")
     return 1 if fail else 0
 
 

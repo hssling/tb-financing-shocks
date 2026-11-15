@@ -28,7 +28,7 @@ cd "D:/onehealth amr meta nma/tb_financing_shocks" && python -I submission/build
 | `05_RECORD_checklist.docx` | Reporting checklist |
 
 Portal fields: title, running title, abstract (paste from the manuscript), keywords from the title page;
-funding none; competing interests none; AI use as on the title page.
+funding none; competing interests none; AI use as in the manuscript and on the title page.
 
 ## Author-only
 

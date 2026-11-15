@@ -3,6 +3,11 @@
 1. Every derived number the letter states equals what the code computes now.
 2. References numbered 1..n, all cited, in order of first citation; at most 15.
 3. Letter text at most 1,100 words (IJTLD Letter).
+4. IJTLD form: superscript citations; title <= 110 characters without
+   abbreviations; running head <= 45 characters; 3-5 keywords, none in the
+   title; first author and "et al." when there are more than three authors;
+   an ethics statement; the built Word file embeds the figure and carries
+   line numbers.
 
 Usage: python -I verification/check_d.py ; exit 1 on any failure.
 """
@@ -54,7 +59,9 @@ def main() -> int:
     if listed != list(range(1, len(listed) + 1)) or len(listed) > 15:
         errs.append(f"reference list {listed} (IJTLD Letter: at most 15)")
     order: list[int] = []
-    for m in re.finditer(r"\((\d+(?:\s*[,–-]\s*\d+)*)\)", t[t.index("## Letter"):i]):
+    if re.search(r"\((\d+(?:\s*[,–-]\s*\d+)*)\)", t[t.index("Dear Editor"):i]):
+        errs.append("bracketed citation found; IJTLD uses superscript numbers")
+    for m in re.finditer(r"\^(\d+(?:[,–-]\d+)*)\^", t[t.index("Dear Editor"):i]):
         for part in m.group(1).split(","):
             rng = [int(x) for x in re.split(r"[–-]", part)]
             for n in range(rng[0], rng[-1] + 1):
@@ -66,15 +73,62 @@ def main() -> int:
         errs.append(f"references not in order of first citation: {order}")
 
     letter = t[t.index("Dear Editor"):t.index("**Funding.**")]
-    nwords = len(re.sub(r"\*\*|`|#", "", letter).split())
+    nwords = len(re.sub(r"\*\*|`|#|\^[\d,–-]+\^", "", letter).split())
     if nwords > 1100:
         errs.append(f"letter {nwords} words > 1,100")
+
+    # 4. IJTLD form
+    title = t.splitlines()[0].lstrip("# ").strip()
+    if len(title) > 110:
+        errs.append(f"title {len(title)} characters > 110")
+    if re.search(r"\b[A-Z]{2,}\b|\b[A-Z][a-z]*[A-Z]", title):
+        errs.append(f"title contains an abbreviation: {title!r}")
+    head = re.search(r"(?m)^\*\*Running head:\*\* (.*)$", t).group(1).strip()
+    if len(head) > 45:
+        errs.append(f"running head {len(head)} characters > 45")
+    kws = [k.strip() for k in re.search(r"(?m)^\*\*Keywords:\*\* (.*)$", t).group(1).split(";")]
+    if not 3 <= len(kws) <= 5:
+        errs.append(f"{len(kws)} keywords; IJTLD asks for 3-5")
+    for k in kws:
+        if k.lower() in title.lower():
+            errs.append(f"keyword {k!r} appears in the title")
+    for n_, e in re.findall(r"(?m)^(\d+)\. (.*)$", t[i:j]):
+        names = re.match(r"^((?:[A-Z][\w'-]+(?: [A-Z][\w'-]+)* [A-Z]{1,3}, )*[A-Z][\w'-]+(?: [A-Z][\w'-]+)* [A-Z]{1,3})[.,]", e)
+        if names and names.group(1).count(",") + 1 > 3:
+            errs.append(f"reference {n_}: more than three authors listed; use the first and et al.")
+        if re.search(r"\bdoi:", e):
+            errs.append(f"reference {n_}: IJTLD article references carry no DOI")
+    if not re.search(r"Ethical approval was not required", t):
+        errs.append("no ethics statement")
+    docx = ROOT / "submission" / "paper_d" / "03_letter.docx"
+    if docx.exists():
+        import zipfile
+        with zipfile.ZipFile(docx) as z:
+            names_ = z.namelist(); doc = z.read("word/document.xml").decode("utf-8")
+        if not any(x.startswith("word/media/") for x in names_):
+            errs.append("built letter does not embed the figure")
+        if "lnNumType" not in doc:
+            errs.append("built letter has no line numbering")
+        if not re.search(r'<w:vertAlign w:val="superscript"\s*/>', doc):
+            errs.append("built letter has no superscript citations")
+        if docx.stat().st_mtime < PAPER.stat().st_mtime:
+            errs.append("built letter is older than the source; rerun submission/build_d.py")
+    else:
+        errs.append("submission/paper_d/03_letter.docx not built")
+    cover = ROOT / "submission" / "paper_d" / "02_cover_letter.md"
+    if cover.exists():
+        cl = cover.read_text(encoding="utf-8")
+        if f'"{title}"' not in cl:
+            errs.append("cover letter does not carry the manuscript title")
+        if f"({nwords:,} words, {len(listed)} references, one figure)" not in cl:
+            errs.append(f"cover letter counts differ from the letter ({nwords} words, {len(listed)} references)")
 
     if errs:
         print(f"FAILED: {len(errs)} problem(s)\n  " + "\n  ".join(errs))
         return 1
     print(f"PASSED: {len(want)} derived numbers match the code; {len(listed)} references cited in "
-          f"order; letter {nwords} words")
+          f"order; letter {nwords} words; title {len(title)} characters; running head {len(head)}; "
+          f"{len(kws)} keywords; IJTLD form checked in the source and the built Word file")
     return 0
 
 
