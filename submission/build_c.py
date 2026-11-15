@@ -54,9 +54,9 @@ def blind(t: str) -> str:
         t, n = re.subn(pat, "", t)
         assert n == 1, f"blinding pattern did not match exactly once: {pat}"
     t = t.replace("Siddalingaiah HS.", "[Author].")
-    # the contributions statement names the author by initials
-    t, n = re.subn(r"(## Author contributions\n\n).*\n", r"\1[Withheld for blind review.]\n", t)
-    assert n == 1, "author contributions section not found exactly once"
+    # The Bulletin takes author contributions in its submission system, not in
+    # the manuscript; if a statement is ever added, it names the author by initials.
+    t = re.sub(r"(## Author contributions\n\n).*\n", r"\1[Withheld for blind review.]\n", t)
     # The archive DOI resolves to a record naming the author, and the
     # repository URL carries the author's username: both withheld when blind.
     t = re.sub(r"doi:10\.5281/zenodo\.\d+", "[archive DOI withheld for blind review]", t)
