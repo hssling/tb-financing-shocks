@@ -78,3 +78,9 @@ analysis** therefore admits countries whose only failure is a blank "other grant
 way. It is reported as post hoc and does not replace the primary population. Countries failing the
 identity (Cameroon, Ethiopia, Uganda) or missing a whole year (Central African Republic, Micronesia,
 Tajikistan's USAID value) stay excluded.
+
+**Correction to the entry above (15 November 2026).** "Seven of the twelve failed only because 'other
+grants' was blank" was miscounted. Five failed only for that reason (Kenya, Lesotho, the Philippines,
+South Africa, Ukraine) and are the five admitted post hoc. Kyrgyzstan also has a blank "other grants",
+but its 2025 total is printed as zero while its sources sum to US$ 18.0 million, so it fails the identity
+and stays excluded. The check that caught this is verification/check_c.py.
