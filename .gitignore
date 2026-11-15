@@ -1,0 +1,9 @@
+outputs/
+__pycache__/
+*.pyc
+.pytest_cache/
+# WHO report-repository files carry no licence: fetched, never committed
+data/vintages/
+# personal and publisher files
+*.pdf
+*sign*.png
