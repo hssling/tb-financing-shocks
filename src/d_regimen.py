@@ -219,6 +219,49 @@ def descriptive(which: str) -> dict[int, dict]:
     return out
 
 
+def balanced(which: str, a: int = 2019, b: int = 2024) -> dict:
+    """Post hoc (analysis plan section 9): the same countries in year a and b."""
+    S = series(which)
+    k = deflator()
+    pairs = [(S[c][a], S[c][b]) for c in S if not c.startswith("__") and a in S[c] and b in S[c]]
+    r = [y / x for x, y in pairs]
+    rc = [v * k[b] / k[a] for v in r]
+    return {"n": len(r), "median_ratio": statistics.median(r), "median_ratio_constant": statistics.median(rc),
+            "share_falling": sum(1 for v in r if v < 1) / len(r),
+            "median_a": statistics.median(x for x, _ in pairs), "median_b": statistics.median(y for _, y in pairs)}
+
+
+def panel_medians(which: str) -> dict[int, float]:
+    """Medians by year, constant 2024 US$, among countries reporting in both
+    2019 and 2024 (the panel drawn in Figure 1)."""
+    S = series(which, constant=True)
+    keep = [c for c in S if not c.startswith("__") and 2019 in S[c] and 2024 in S[c]]
+    return {y: statistics.median([S[c][y] for c in keep if y in S[c]]) for y in YEARS
+            if any(y in S[c] for c in keep)}
+
+
+def fall_before_guideline(which: str) -> float:
+    """Share of the 2019-2024 fall in the panel median already present by
+    2021, the year before WHO's December 2022 recommendation of BPaLM."""
+    m = panel_medians(which)
+    return (m[2019] - m[2021]) / (m[2019] - m[2024])
+
+
+def adoption_counts() -> dict:
+    """How far BPaL/BPaLM had spread in the years WHO counted it, and what it
+    collects instead."""
+    N = table(NOTIF)
+    rep = {y: sum(1 for (c, yy), r in N.items() if yy == y and num(r.get("mdrxdr_bpalm_tx")) is not None)
+           for y in (2022, 2023, 2024)}
+    isos = sorted({c for c, _ in N})
+    ex = [exposure(c) for c in isos]
+    ex = [x for x in ex if x is not None]
+    lt12 = sum(1 for (c, y), r in N.items() if y == 2025 and num(r.get("rr_tx_lt12m")) is not None)
+    return {"reporting": rep, "with_share": len(ex), "share_ge_25": sum(1 for x in ex if x >= 0.25),
+            "share_ge_10": sum(1 for x in ex if x >= 0.10), "median_share": statistics.median(ex),
+            "lt12_2025": lt12}
+
+
 def results() -> dict:
     verify_inputs()
     R = {"join": join_test()}
@@ -234,6 +277,10 @@ def results() -> dict:
             "descriptive": descriptive(which),
         }
         R[which]["flagged"] = list(series.flagged)      # type: ignore[attr-defined]
+        R[which]["balanced"] = balanced(which)
+        R[which]["panel_medians"] = panel_medians(which)
+        R[which]["fall_by_2021"] = fall_before_guideline(which)
+    R["adoption"] = adoption_counts()
     return R
 
 

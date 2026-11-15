@@ -17,8 +17,10 @@ PW = ROOT.parent / "provenance_weighting"
 sys.path.insert(0, str(PW / "verification"))
 import check_self_similarity as ss       # noqa: E402
 
-TARGETS = [("Paper C (USAID 2025)", ROOT / "manuscript" / "manuscript_c.md")]
-SOURCES = [("Paper A, IJTB-D-26-00779", ss.PAPER_A), ("Paper B, IJE-2026-11-2170", ss.PAPER_B)] + ss.PRIOR
+TARGETS = [("Paper C (USAID 2025)", ROOT / "manuscript" / "manuscript_c.md"),
+           ("Paper D letter (RR-TB spending)", ROOT / "manuscript" / "paper_d_letter.md")]
+SOURCES = [("Paper A, IJTB-D-26-00779", ss.PAPER_A), ("Paper B, IJE-2026-11-2170", ss.PAPER_B)] + ss.PRIOR \
+    + [(name, path) for name, path in TARGETS]          # C and D against each other
 
 
 def longest_run(a: list[str], b_shingles: set) -> int:
@@ -43,6 +45,8 @@ def main() -> int:
         print(f"{tname}: {len(words):,} words, {len(tsh):,} distinct 8-grams")
         union = set()
         for sname, spath in SOURCES:
+            if Path(spath) == tpath:
+                continue                                  # a paper against itself
             if not Path(spath).exists():
                 print(f"   {sname:<44} (not on this machine)")
                 continue
