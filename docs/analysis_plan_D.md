@@ -90,3 +90,26 @@ countries: a moderate break, consistent with the 2020 change in definition and C
 second-line drug expenditure per patient started fell by 35% (46% in constant dollars) and reported
 expenditure per MDR-TB patient by 40% (51%), falling in about three quarters of countries, in adopters and
 non-adopters alike. This is descriptive and cannot be attributed to any cause in these data.
+
+## 10. Correction and deviation (15 November 2026, after submission; written before computing anything new)
+
+**Correction.** Section 9 says the BPaL count "was not collected for 2024". That is wrong in substance.
+From the 2024 return WHO replaced `mdrxdr_bpalm_tx` with `dr_6m_tx`, the number of people started on a
+6-month regimen (BPaLM or BDLLfxC) for MDR/RR-TB or pre-XDR-TB, reported by 90 countries for 2024 and 101
+for 2025. The analysis did not read the full data dictionary and missed it. The submitted letter
+(IJTLD-11-26-0773) repeated the error and recommended that WHO restore a regimen-specific count.
+
+**Deviation (labelled post hoc).** The pre-specified comparison is repeated with the 2024 count as the
+exposure. Everything else in Sections 3-5 is unchanged:
+
+- Exposure: share of people starting RR-TB treatment in 2024 who started a 6-month regimen,
+  `dr_6m_tx / started(2024)`, capped at 1. A country with `dr_6m_used = 0` or `dr_6m_tx = 0` is a
+  non-adopter; high adoption is a share of 25% or more, as pre-specified.
+- Outcomes, windows, minimum counts, outlier rule, permutation test (10 000 permutations, seed
+  20261115) and rank correlation: as in Sections 3-5.
+- Sensitivity: the 10% threshold and the 2017-2018 placebo window, as pre-specified.
+
+**Known weakness, stated before the result is seen.** The exposure year 2024 lies inside the outcome
+window 2023-2024, so the comparison is concurrent rather than prospective, and countries whose spending
+was already falling may have adopted faster. A difference in either direction is an association, not an
+effect of the regimen. The letter will report the result whatever its direction.
