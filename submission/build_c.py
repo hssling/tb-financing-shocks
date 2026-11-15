@@ -31,7 +31,7 @@ sys.path.insert(0, str(ROOT.parent / "provenance_weighting" / "manuscript"))
 import style_docx_tables as styler           # noqa: E402
 
 AUTHOR_ONLY = [r"\*\*Target journal:\*\*", r"Notes for the author", r"not for submission"]
-LEAKS = ["Siddalingaiah", "hssling", "ORCID", "Shridevi", "0000-0002", "zenodo."]
+LEAKS = ["Siddalingaiah", "hssling", "ORCID", "Shridevi", "0000-0002", "zenodo.", "HSS "]
 
 
 def count_words(text: str) -> int:
@@ -54,6 +54,9 @@ def blind(t: str) -> str:
         t, n = re.subn(pat, "", t)
         assert n == 1, f"blinding pattern did not match exactly once: {pat}"
     t = t.replace("Siddalingaiah HS.", "[Author].")
+    # the contributions statement names the author by initials
+    t, n = re.subn(r"(## Author contributions\n\n).*\n", r"\1[Withheld for blind review.]\n", t)
+    assert n == 1, "author contributions section not found exactly once"
     # The archive DOI resolves to a record naming the author, and the
     # repository URL carries the author's username: both withheld when blind.
     t = re.sub(r"doi:10\.5281/zenodo\.\d+", "[archive DOI withheld for blind review]", t)
