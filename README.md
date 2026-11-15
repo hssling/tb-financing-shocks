@@ -54,10 +54,12 @@ million to US$ 227.8 million, while domestic funding rose from US$ 580.4 million
 Five countries fully offset the fall in USAID funding, one partly and three not at all; those that did
 not lost Global Fund funding in the same year.
 
-**Paper D.** The pre-specified comparison of BPaL/BPaLM adopters and non-adopters could not be made:
-WHO counted BPaL/BPaLM starts only for 2022 and 2023, and few high adopters also reported spending. In the
-same 66 countries, spending per RR-TB patient fell by about half in real terms between 2019 and 2024, and
-much of the fall preceded WHO's December 2022 recommendation of BPaLM.
+**Paper D.** The pre-specified comparison of BPaL/BPaLM adopters and non-adopters, with adoption measured
+in 2022–2023, was uninformative: few high adopters also reported spending. Repeated with WHO's count of
+6-month regimen starts for 2024 (a logged deviation, analysis plan section 10), spending per patient also
+fell in non-adopters, with no clear difference from adopters. In 66 countries, spending per RR-TB patient
+fell by about half in real terms between 2019 and 2024, and much of the fall preceded WHO's December 2022
+recommendation of BPaLM.
 
 ## Licence
 

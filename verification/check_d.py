@@ -13,6 +13,7 @@ Usage: python -I verification/check_d.py ; exit 1 on any failure.
 """
 from __future__ import annotations
 
+import math
 import re
 import sys
 from pathlib import Path
@@ -32,11 +33,22 @@ def main() -> int:
     R = d.results()
     s, c, a = R["sld"]["balanced"], R["cpp"]["balanced"], R["adoption"]
     pc = lambda r: f"{100 * (1 - r):.1f}%"
+    pct = lambda dlog: f"{100 * (math.exp(dlog) - 1):+.1f}%".replace("-", "−").replace("+", "+")
     want = {
         "BPaL reporting": f"with {a['reporting'][2022]} and {a['reporting'][2023]} countries reporting",
-        "2024 not counted": "and not for 2024" if a["reporting"][2024] == 0 else "(2024 now counted)",
-        "lt12 2025": f"reported by {a['lt12_2025']} countries",
-        "share >=25": f"{WORDS[a['share_ge_25']].capitalize()} countries reached a 25% share",
+        "six-month reporting": f"reported by {a['six_reporting'][2024]} countries for 2024 and "
+                               f"{a['six_reporting'][2025]} for 2025",
+        "six-month >=25": f"{a['six_ge_25_2024']} of the {a['six_with_share_2024']} countries with a share reached 25%",
+        "six sld": (lambda r: f"changed by {pct(r['median_high'])} in {r['n_high']} high adopters and "
+                              f"{pct(r['median_non'])} in {r['n_non']} non-adopters (permutation p = {r['p']:.2f})")
+                   (R["sld"]["six_2024"]),
+        "six cpp": (lambda r: f"by {pct(r['median_high'])} in {r['n_high']} high adopters and "
+                              f"{pct(r['median_non'])} in {r['n_non']} non-adopters (p = {r['p']:.2f})")
+                   (R["cpp"]["six_2024"]),
+        "placebo direction": "adopters' spending had risen relative to non-adopters'"
+                             if R["sld"]["six_2024_placebo"]["diff"] > 0 and R["cpp"]["six_2024_placebo"]["diff"] > 0
+                             else "(placebo direction changed)",
+        "share >=25": f"{WORDS[a['share_ge_25']]} countries reached a 25% share",
         "analysable": f"only {WORDS[min(R['sld']['primary']['n_high'], R['cpp']['primary']['n_high'])]} to "
                       f"{WORDS[max(R['sld']['primary']['n_high'], R['cpp']['primary']['n_high'])]} of them",
         "sld n": f"Among the {s['n']} countries reporting second-line drug expenditure",

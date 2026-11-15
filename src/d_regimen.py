@@ -99,6 +99,20 @@ def exposure(iso: str, key: str = "mdrxdr_bpalm_tx") -> float | None:
     return statistics.mean(shares) if shares else None
 
 
+def exposure_6m(iso: str, year: int = 2024) -> float | None:
+    """Plan section 10 (post hoc): share of people starting RR-TB treatment in
+    `year` who started a 6-month regimen (dr_6m_tx, BPaLM or BDLLfxC)."""
+    r = table(NOTIF).get((iso, year)) or {}
+    s, b = started(iso, year), num(r.get("dr_6m_tx"))
+    if not s:
+        return None
+    if b is not None:
+        return min(b / s, 1.0)
+    if num(r.get("dr_6m_used")) == 0:
+        return 0.0
+    return None
+
+
 def klass(x: float | None, high: float = HIGH) -> str | None:
     if x is None:
         return None
@@ -171,13 +185,13 @@ def spearman(x: list[float], y: list[float]) -> float:
 
 
 def compare(which: str, pre=BASELINE, post=ADOPTION, high=HIGH, exclude=(), constant=False,
-            drop_restated=False, min_pre=2) -> dict:
+            drop_restated=False, min_pre=2, expo=exposure) -> dict:
     S = series(which, constant, drop_restated)
     rows = []
     for iso, d in S.items():
         if iso.startswith("__") or iso in exclude:
             continue
-        x = exposure(iso)
+        x = expo(iso)
         c = klass(x, high)
         ch = change(d, pre, post, min_pre=min_pre)
         if c is None or ch is None:
@@ -257,9 +271,16 @@ def adoption_counts() -> dict:
     ex = [exposure(c) for c in isos]
     ex = [x for x in ex if x is not None]
     lt12 = sum(1 for (c, y), r in N.items() if y == 2025 and num(r.get("rr_tx_lt12m")) is not None)
+    six = {y: sum(1 for (c, yy), r in N.items() if yy == y and num(r.get("dr_6m_tx")) is not None)
+           for y in (2024, 2025)}
+    six_total = {y: sum(num(r.get("dr_6m_tx")) or 0 for (c, yy), r in N.items() if yy == y)
+                 for y in (2024, 2025)}
+    ex6 = [x for x in (exposure_6m(c) for c in isos) if x is not None]
     return {"reporting": rep, "with_share": len(ex), "share_ge_25": sum(1 for x in ex if x >= 0.25),
             "share_ge_10": sum(1 for x in ex if x >= 0.10), "median_share": statistics.median(ex),
-            "lt12_2025": lt12}
+            "lt12_2025": lt12, "six_reporting": six, "six_total": six_total,
+            "six_with_share_2024": len(ex6), "six_ge_25_2024": sum(1 for x in ex6 if x >= 0.25),
+            "six_non_2024": sum(1 for x in ex6 if x == 0)}
 
 
 def results() -> dict:
@@ -280,6 +301,10 @@ def results() -> dict:
         R[which]["balanced"] = balanced(which)
         R[which]["panel_medians"] = panel_medians(which)
         R[which]["fall_by_2021"] = fall_before_guideline(which)
+        # plan section 10 (post hoc): 2024 six-month regimen share as the exposure
+        R[which]["six_2024"] = compare(which, expo=exposure_6m)
+        R[which]["six_2024_t10"] = compare(which, expo=exposure_6m, high=0.10)
+        R[which]["six_2024_placebo"] = compare(which, pre=PLACEBO_PRE, post=BASELINE, expo=exposure_6m)
     R["adoption"] = adoption_counts()
     return R
 
@@ -300,7 +325,7 @@ def main() -> int:
                          ("cpp", "Outcome 2: reported expenditure per MDR patient")):
         print(f"\n== {label}")
         for k in ("primary", "placebo", "non_gdf_excluded", "constant", "no_restated",
-                  "threshold_10", "threshold_50"):
+                  "threshold_10", "threshold_50", "six_2024", "six_2024_t10", "six_2024_placebo"):
             print(f"   {k:<18} {fmt(R[which][k])}")
         print("   flagged >p99:", R[which]["flagged"])
         print("   median by year (n, median US$) all | high | non:")

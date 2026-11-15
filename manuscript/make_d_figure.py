@@ -35,8 +35,9 @@ def panel(which: str) -> tuple[list[int], list[float], int]:
 def main() -> int:
     plt.rcParams.update({"font.size": 13, "axes.spines.top": False, "axes.spines.right": False})
     fig, ax = plt.subplots(figsize=(10, 5.8), layout="constrained")
-    ax.axvspan(2021.5, 2023.5, color="#eeeeee", zorder=0)
-    ax.text(2022.3, 0.03, "BPaL/BPaLM\nstarts counted\nby WHO", transform=ax.get_xaxis_transform(),
+    # shaded: the period after WHO recommended BPaLM (December 2022)
+    ax.axvspan(2022.96, 2024.5, color="#eeeeee", zorder=0)
+    ax.text(2024.1, 0.03, "after WHO's\nBPaLM\nguideline", transform=ax.get_xaxis_transform(),
             ha="center", va="bottom", fontsize=11, color="#444444")
     for which, lab, col, mk in (("sld", "Second-line drug expenditure per patient started", "#2b6cb0", "o"),
                                 ("cpp", "Reported expenditure per MDR-TB patient treated", "#c05621", "s")):
