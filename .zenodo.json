@@ -1,6 +1,6 @@
 {
   "title": "TB financing shocks: replacement of US funding for tuberculosis in 2025, and spending per RR-TB patient, from data reported to WHO",
-  "version": "v1.0.0",
+  "version": "v1.1.0",
   "description": "<p>Reproducible, pre-registered analyses of tuberculosis financing reported by national programmes to the World Health Organization.</p><p>(1) Country by country, how much of the 2024-2025 fall in USAID funding for national TB programmes was offset by domestic, Global Fund and other funding. (2) How spending per patient treated for rifampicin-resistant TB changed between 2017 and 2024, relative to adoption of the 6-month BPaL/BPaLM regimen.</p><p>Contains the analyses (standard-library Python), analysis plans committed before results with dated deviation logs, a pre-registered novelty search, and checks tying each manuscript's tables and numbers to the code. Inputs are WHO public data and WHO report-repository files, read from the companion repository provenance-weighted-priority-setting and verified by SHA-256; WHO's unlicensed repository files are not redistributed. Manuscripts are added on acceptance.</p>",
   "upload_type": "software",
   "license": "MIT",
