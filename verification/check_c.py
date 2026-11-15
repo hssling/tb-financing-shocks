@@ -82,6 +82,14 @@ def main() -> int:
         if s.replace("US$ ", "US$ ") not in t:
             errs.append(f"text: expected {label} as {s!r}")
 
+    # 2a. the public README quotes the same headline numbers; they must match too.
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    for label in ("USAID", "Global Fund", "domestic"):
+        s = want[label].replace(" million to ", " million to ")
+        # README wraps lines; compare with whitespace collapsed
+        if " ".join(s.split()) not in " ".join(readme.split()):
+            errs.append(f"README: expected {label} as {s!r}")
+
     # 2b. every number in the abstract must be supported by the body or tables.
     # A mutation test changed 40.3% in the abstract alone and the checks above
     # passed, because they look at body sentences.
