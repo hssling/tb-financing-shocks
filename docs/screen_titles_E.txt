@@ -1,0 +1,31 @@
+[E1 pu 42989235] 2026 | "We cannot rely on foreign entities to take care of our health… we need to change our mindset": immediate impacts of the 2025 U.S. government funding cuts on health in Kenya. | BMC public health
+[E1 pu 42612664] 2026 | Global, regional, and national burden of HIV/AIDS, 1990-2023, with the estimated burden attributable to intimate partner violence and forecasted impacts of funding cuts through 2030: results from the Global Burden of Disease Study 2023. | The lancet. HIV
+[E1 pu 42568929] 2026 | Temporal trends and associations between domestic public health spending, donor funding and tuberculosis outcomes in Africa: a serial cross-sectional study (1990-2022). | BMJ public health
+[E1 pu 42254599] 2026 | Impact of smoking on the treatment cycle and health economics of acute exacerbations of chronic obstructive pulmonary disease. | Tobacco induced diseases
+[E1 pu 41719377] 2026 | The potential impact of reduced international donor funding on the household economic burden of tuberculosis in low- and middle-income countries: A modeling study. | PLoS medicine
+[E1 pu 41557852] 2026 | Linking Children and Adolescents With TB Disease to HIV Services in 16 PEPFAR-supported High TB/HIV-Burden Countries in Sub-Saharan Africa, October 2018-September 2022. | The Pediatric infectious disease journal
+[E1 pu 40976857] 2025 | Leveraging PEPFAR- and Global Fund-Supported Laboratory Network for Integrated Disease Testing: Lessons From Integrated HIV, Tuberculosis, and COVID-19 Testing in Nigeria. | The Journal of infectious diseases
+[E1 pu 40705314] 2025 | Characterization of the Targeted Universal Tuberculosis Testing Care Cascade Among People With HIV in PEPFAR-Supported Districts in South Africa. | Journal of acquired immune deficiency syndromes (1999)
+[E1 pu 40659023] 2025 | The potential impact of reductions in international donor funding on tuberculosis in low-income and middle-income countries: a modelling study. | The Lancet. Global health
+[E1 pu 40313294] 2025 | The potential impact of reductions in international donor funding on tuberculosis in low- and middle-income countries. | medRxiv : the preprint server for health sciences
+[E1 eu 40929049] 2025 | A deadly equation: The global toll of US TB funding cuts. | PLOS Glob Public Health
+[E1 eu 40975076] 2025 | Effects of reductions in US foreign assistance on HIV, tuberculosis, family planning, and maternal and child health: a modelling study. | Lancet Glob Health
+[E1 eu 41732341] 2026 | Impact of US government funding freezes on the HIV response: findings from a rapid survey in 32 countries. | Health Aff Sch
+[E1 eu PMC13657024] 2026 | Projected long-term impacts of US funding cuts on TB and HIV in South Africa and the TB Programme response | IJTLD Open
+[E1 eu 42516717] 2026 | Global health consequences of the 2025 US foreign aid freeze: rapid assessments in Colombia, Kenya and Nepal. | BMJ Public Health
+[E1 eu 41664877] 2026 | Consequences of United States funding suspensions on community-led HIV services in Latin America and the Caribbean: findings of a rapid service provider survey. | J Int AIDS Soc
+[E1 eu 40226132] 2025 | Impact of US funding cuts and stop work orders on TB services and research in South Africa. | IJTLD Open
+[E1 eu 41680802] 2026 | Early impacts of PEPFAR funding freeze on HIV service delivery in mid-Western Uganda. | BMC Health Serv Res
+[E1 eu 41579393] 2026 | Ending Tuberculosis through prevention: Zimbabwe's PEPFAR Tuberculosis preventive treatment scale-up journey (2016-2024). | Int J STD AIDS
+[E1 eu 40197320] 2025 | Measuring population health impact of the Trump administration's withdrawal from WHO and cuts to USAID: time to start counting. | Popul Health Metr
+[E1 eu 40626258] 2025 | The impact of the PEPFAR funding freeze on HIV deaths and infections: a mathematical modelling study of seven countries in sub-Saharan Africa. | EClinicalMedicine
+[E1 eu 41874342] 2026 | Tuberculosis Cases and Deaths Averted by PEPFAR. | N Engl J Med
+[E1 eu PPR1064564] 2025 | The potential impact of reduced international donor funding on the household economic burden of tuberculosis in low- and middle-income countries | 
+[E1 eu 41413565] 2025 | African leaders and regional institutions need to take the bull by the horns: a perspective on the impact of the 2025 funding cuts to malaria programmes. | Malar J
+[E1 eu 40065473] 2025 | Global partnerships in combating tropical diseases: assessing the impact of a U.S. withdrawal from the WHO. | Trop Med Health
+[E1 eu 41150373] 2025 | Evaluation of Tuberculosis Preventive Treatment Uptake Among People Living with HIV in PEPFAR-Supported Facilities in Zimbabwe. | Trop Med Infect Dis
+[E1 eu 40866582] 2025 | Global distribution of research efforts, disease burden, and impact of US public funding withdrawal. | Nat Med
+[E2 pu 40618769] 2025 | Undoing progress through sudden tuberculosis funding cuts. | Lancet (London, England)
+[E2 pu 40023179] 2025 | Breaking dependency: strengthening the global tuberculosis response in the face of USAID cuts. | Lancet (London, England)
+[C1 (re-screened) pu 40036589] 2025 | President Trump's foreign aid freeze: impact on Cambodia's tuberculosis programme. | Journal of travel medicine
+[C1 (re-screened) eu 41386238] 2026 | Sustainable solutions to protect tuberculosis control amid donor funding cuts. | Lancet Glob Health
