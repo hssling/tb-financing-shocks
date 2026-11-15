@@ -72,3 +72,21 @@ sparse to use (22 countries). No outcome has been computed by adoption class.
 
 That BPaL caused any country's spending change (the design is observational); anything about clinical
 outcomes; anything about patient costs, which these data do not record; anything for 2025.
+
+## 9. Results of the pre-specified analysis, and a post-hoc check (15 November 2026)
+
+**The primary analysis is uninformative.** At the 25% threshold only 2 countries (outcome 1) and 4
+(outcome 2) were high adopters of BPaL/BPaLM in 2022–2023; no country reached 50%. Outcome 1 gave a
+difference of +1.40 log points (permutation p = 0.044), driven by two countries whose spending rose; at
+the 10% threshold it vanished (+0.003, p = 0.99), and the placebo period showed no difference. Outcome 2
+gave −0.26 (p = 0.48; −0.51, p = 0.22 at 10%). Rank correlations with adoption intensity were −0.05 and
+−0.19. The pre-specified design cannot attribute any change in spending to BPaL: adoption by 2023 was too
+limited, and the BPaL count was not collected for 2024.
+
+The join of the RR-TB treatment definitions (2019 vs 2020) gave a median ratio of 0.88 across 102
+countries: a moderate break, consistent with the 2020 change in definition and COVID-19.
+
+**Post-hoc, labelled as such:** in a balanced panel of the same 66 countries in 2019 and 2024, median
+second-line drug expenditure per patient started fell by 35% (46% in constant dollars) and reported
+expenditure per MDR-TB patient by 40% (51%), falling in about three quarters of countries, in adopters and
+non-adopters alike. This is descriptive and cannot be attributed to any cause in these data.
