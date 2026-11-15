@@ -183,6 +183,41 @@ def summary(rows: list[dict], exclude: tuple[str, ...] = ()) -> dict:
     return s
 
 
+def us_deflator_factor() -> float:
+    """2024 US dollars to 2025 US dollars, from the US GDP deflator WHO's own
+    processed file carries (imf_deflator_us; identical across countries)."""
+    vals = {}
+    for (c, y), r in processed().items():
+        d = num(r.get("imf_deflator_us"))
+        if d and y in (2024, 2025):
+            vals.setdefault(y, set()).add(round(d, 6))
+    assert all(len(v) == 1 for v in vals.values()), vals      # one value per year
+    return next(iter(vals[2025])) / next(iter(vals[2024]))
+
+
+def constant_dollar_rows(rows: list[dict]) -> list[dict]:
+    """Analysis plan 5.1: restate 2024 amounts in 2025 dollars and reclassify."""
+    k = us_deflator_factor()
+    out = []
+    for r in rows:
+        a = {s: r[f"{s}_2024"] * k for s in SOURCES}
+        b = {s: r[f"{s}_2025"] for s in SOURCES}
+        d = {s: b[s] - a[s] for s in SOURCES}
+        dt = sum(d.values())
+        cls = ("USAID did not fall" if d["usaid"] >= 0 else "fully offset" if dt >= 0
+               else "partly offset" if dt > d["usaid"] else "not offset")
+        out.append({**r, **{f"{s}_2024": a[s] for s in SOURCES}, "total_2024": sum(a.values()),
+                    **{f"d_{s}": d[s] for s in SOURCES}, "d_total": dt, "class": cls,
+                    "offset_ratio": (d["domestic"] + d["gf"] + d["grnt"]) / -d["usaid"]
+                    if d["usaid"] < 0 else None})
+    return out
+
+
+def possibly_restated(r: dict) -> list[str]:
+    """Analysis plan 5.3: non-zero sources whose 2025 value equals 2024 exactly."""
+    return [s for s in SOURCES if r[f"{s}_2025"] and r[f"{s}_2024"] == r[f"{s}_2025"]]
+
+
 def results() -> dict:
     verify_inputs()
     rows = country_rows()
@@ -195,6 +230,10 @@ def results() -> dict:
         "dic": difference_in_changes(),
         "expected_2026": expected_2026(pops["usaid"]),
         "sensitivity_any_label": summary(country_rows(require_reported=False)),
+        "deflator_factor": us_deflator_factor(),
+        "sensitivity_constant": summary(constant_dollar_rows(rows)),
+        "restated": {r["iso3"]: possibly_restated(r) for r in rows if possibly_restated(r)},
+        "sensitivity_no_restated": summary([r for r in rows if not possibly_restated(r)]),
         "posthoc_blank_grants_rows": country_rows(blank_grants_ok=True),
         "posthoc_blank_grants": summary(country_rows(blank_grants_ok=True)),
         "posthoc_blank_grants_without_india": summary(country_rows(blank_grants_ok=True), ("IND",)),
@@ -226,6 +265,13 @@ def main() -> int:
                              for k, v in R["expected_2026"].items()})
     print("Sensitivity, any provenance label:", R["sensitivity_any_label"]["n"], "countries,",
           R["sensitivity_any_label"]["classes"])
+    print(f"Sensitivity, constant 2025 US$ (factor {R['deflator_factor']:.4f}):",
+          R["sensitivity_constant"]["classes"], "median offset",
+          round(R["sensitivity_constant"]["median_offset"], 2))
+    print("Possibly restated sources (2025 = 2024):", R["restated"])
+    s = R["sensitivity_no_restated"]
+    print(f"Sensitivity, excluding those countries: n={s['n']} {s['classes']}; domestic "
+          f"{m(s['domestic_2024'])} -> {m(s['domestic_2025'])}")
     for label in ("posthoc_blank_grants", "posthoc_blank_grants_without_india"):
         s = R[label]
         print(f"\n[{label}] n={s['n']}: USAID {m(s['usaid_2024'])} -> {m(s['usaid_2025'])}; domestic "
