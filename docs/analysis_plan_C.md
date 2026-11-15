@@ -66,3 +66,15 @@ classification or comparison has been computed.
 That the US cuts caused any country's domestic change (the design is descriptive, with a trend and a
 comparison group, not causal); anything about services or outcomes; anything about funding that does not
 pass through national TB programmes (for example US funding to implementing partners off-budget).
+
+## 8. Deviation log
+
+**15 November 2026, after the primary analysis was run.** Twelve of the 24 countries with USAID funding
+in 2024 failed the population rule. Seven of the twelve failed only because "other grants" was blank
+in one year, a case the plan did not anticipate. WHO's form instructs countries to leave a field empty
+only if its value is unknown, so a blank is not a zero. But where the other three sources sum to the
+reported total within 1%, the total itself shows other grants were zero. A **post-hoc sensitivity
+analysis** therefore admits countries whose only failure is a blank "other grants" confirmed zero in this
+way. It is reported as post hoc and does not replace the primary population. Countries failing the
+identity (Cameroon, Ethiopia, Uganda) or missing a whole year (Central African Republic, Micronesia,
+Tajikistan's USAID value) stay excluded.
