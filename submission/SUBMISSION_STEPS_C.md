@@ -34,6 +34,6 @@ funding none; competing interests none; AI use as on the title page.
 
 - The Bulletin asks for the two "what this adds" paragraphs; they are in the cover letter. If the portal
   has dedicated boxes, paste them there too.
-- Data availability promises an open deposit on acceptance. Before acceptance the repository is local;
-  create the public repository and Zenodo release when accepted (or earlier if the editors ask).
-- Read the PDF the portal builds before approving: tables, references 1–14, figure.
+- Code, plans and checks are public: https://github.com/hssling/tb-financing-shocks, archived at Zenodo doi:10.5281/zenodo.24245803 (v1.0.0, 15 Nov 2026).
+  Add the manuscript to the repository on acceptance and cut a new release.
+- Read the PDF the portal builds before approving: tables, references 1–15, figure, and that the blinded copy withholds the archive DOI.
