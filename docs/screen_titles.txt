@@ -1,0 +1,167 @@
+===== C1
+  [pu 42989235] 2026 | "We cannot rely on foreign entities to take care of our health… we need to change our mindset": immediate impacts of the 2025 U.S. government funding  | BMC public health
+  [pu 42831564] 2026 | Aid cuts, health financing fragility, and maladaptive resilience in Sierra Leone: a rapid mixed-methods study. | Health policy and planning
+  [pu 42688228] 2026 | Financing the transition: a roadmap for sustaining disease control in low- and middle-income countries after the 2025 contraction in development assis | Frontiers in health services
+  [pu 42612664] 2026 | Global, regional, and national burden of HIV/AIDS, 1990-2023, with the estimated burden attributable to intimate partner violence and forecasted impac | The lancet. HIV
+  [pu 42568929] 2026 | Temporal trends and associations between domestic public health spending, donor funding and tuberculosis outcomes in Africa: a serial cross-sectional  | BMJ public health
+  [pu 42213766] 2026 | Converting donor dependence to domestic ownership: The realignment of tuberculosis financing for sustainability. | PLOS global public health
+  [pu 41749388] 2026 | The impact of U.S. foreign aid reduction on global health. | Tropical medicine and health
+  [pu 41719377] 2026 | The potential impact of reduced international donor funding on the household economic burden of tuberculosis in low- and middle-income countries: A mo | PLoS medicine
+  [pu 40975076] 2025 | Effects of reductions in US foreign assistance on HIV, tuberculosis, family planning, and maternal and child health: a modelling study. | The Lancet. Global health
+  [pu 40761423] 2025 | United States aid cut: alternatives for sustainable financing for health. | The Pan African medical journal
+  [pu 40659023] 2025 | The potential impact of reductions in international donor funding on tuberculosis in low-income and middle-income countries: a modelling study. | The Lancet. Global health
+  [pu 40609560] 2025 | Evaluating the impact of two decades of USAID interventions and projecting the effects of defunding on mortality up to 2030: a retrospective impact ev | Lancet (London, England)
+  [pu 40529700] 2025 | The global implications of U.S. withdrawal from WHO and the USAID shutdown: challenges and strategic policy considerations. | Frontiers in public health
+  [pu 40313294] 2025 | The potential impact of reductions in international donor funding on tuberculosis in low- and middle-income countries. | medRxiv : the preprint server for health
+  [pu 40036589] 2025 | President Trump's foreign aid freeze: impact on Cambodia's tuberculosis programme. | Journal of travel medicine
+  [eu 42948539] 2026 | Foreign Aid in Transition: A Critical Assessment of USAID's Withdrawal From Five Countries in Sub-Saharan Africa. | Public Health Chall
+  [eu 40959184] 2025 | A Wake-Up Call: Can Africa Sustain HIV/AIDS Programs Without Foreign Aid? | Health Sci Rep
+  [eu 42516717] 2026 | Global health consequences of the 2025 US foreign aid freeze: rapid assessments in Colombia, Kenya and Nepal. | BMJ Public Health
+  [eu PMC12556425] 2025 | 10.F. Round table: Global health implications of US Foreign Aid review for EU in global health governance | Eur J Public Health
+  [eu 40455310] 2025 | The Precarious Future of HIV and AIDS Programs in Zimbabwe Following International Funding Freeze: Impact and Strategic Interventions. | J Epidemiol Glob Health
+  [eu 40929049] 2025 | A deadly equation: The global toll of US TB funding cuts. | PLOS Glob Public Health
+  [eu 42676990] 2026 | Ways to address health financing pressures and donor transition, Kenya. | Bull World Health Organ
+  [eu 41680802] 2026 | Early impacts of PEPFAR funding freeze on HIV service delivery in mid-Western Uganda. | BMC Health Serv Res
+  [eu 41732341] 2026 | Impact of US government funding freezes on the HIV response: findings from a rapid survey in 32 countries. | Health Aff Sch
+  [eu 40226215] 2025 | Implications of the USAID U-turn on women's health globally. | Obstet Med
+  [eu 40226132] 2025 | Impact of US funding cuts and stop work orders on TB services and research in South Africa. | IJTLD Open
+  [eu 41628095] 2026 | The sustainability of public health programs following donor transition: A comparative case study of HIV services and maternal and newborn care in Uga | PLoS One
+  [eu PMC13657024] 2026 | Projected long-term impacts of US funding cuts on TB and HIV in South Africa and the TB Programme response | IJTLD Open
+  [eu 40549501] 2025 | The cost of the plunge: the impact and cost of a cessation of PEPFAR-supported services in South Africa. | AIDS
+  [eu 39996580] 2025 | By executive order: The likely deadly consequences associated with a 90-day pause in PEPFAR funding. | J Int AIDS Soc
+  [eu 40664431] 2025 | Essential aid made fully visible: understanding the proCHW financing landscape analysing accessible donor data sources. | BMJ Glob Health
+  [eu 40197320] 2025 | Measuring population health impact of the Trump administration's withdrawal from WHO and cuts to USAID: time to start counting. | Popul Health Metr
+  [eu 40293974] 2025 | A Critical juncture in global health: Leveraging historical institutionalism to examine PEPFAR dependency and inform the development of self-reliant p | PLOS Glob Public Health
+  [eu PPR1064564] 2025 | The potential impact of reduced international donor funding on the household economic burden of tuberculosis in low- and middle-income countries | medRxiv
+  [eu 41410401] 2025 | USA's exit from the WHO and freeze on USAID funds globally: its perils and possible opportunities. | J Public Health (Oxf)
+  [eu 40626258] 2025 | The impact of the PEPFAR funding freeze on HIV deaths and infections: a mathematical modelling study of seven countries in sub-Saharan Africa. | EClinicalMedicine
+  [eu 41371945] 2025 | Preventing Disruptions in HIV Service Delivery to Key Populations During Project Transition From an International to a Local Implementing Partner: A C | Glob Health Sci Pract
+  [eu 41413565] 2025 | African leaders and regional institutions need to take the bull by the horns: a perspective on the impact of the 2025 funding cuts to malaria programm | Malar J
+  [eu 42189537] 2026 | Global Aid Cuts and Local Health Consequences in Nakivale Refugee Settlement, Uganda. | JAMA Netw Open
+  [eu 40470131] 2025 | United States foreign aid freeze: An urgent call to action for support for African national laboratory programmes. | Afr J Lab Med
+  [eu 41876138] 2026 | Trends in government and donor funding for vertical and horizontal community health worker programmes in sub-Saharan Africa. | BMJ Glob Health
+  [eu 41874342] 2026 | Tuberculosis Cases and Deaths Averted by PEPFAR. | N Engl J Med
+  [eu 41196882] 2025 | How can middle-income countries successfully transition away from international health aid? | PLoS Med
+  [eu 41545980] 2026 | Keloids as a rare complication of voluntary medical male circumcision: findings from PEPFAR's notifiable adverse events reporting system. | BMC Urol
+  [eu 41822163] 2026 | Not Every Country Can Absorb a Shock: Unequal Capacity to Withstand World Health Organization Aid Cuts. | Public Health Chall
+  [eu 40409761] 2025 | Navigating independence: the short-term and long-term impacts of USAID dismantling on Somalia's humanitarian and development landscape. | BMJ Glob Health
+  [eu 41035768] 2025 | Stakeholders' perspectives on funding malaria, HIV/AIDS and tuberculosis services in Tanzania through domestic resources mobilisation: a qualitative s | BMJ Public Health
+  [eu 42058146] 2026 | Integrated impact of climate change on health outcomes and economic stability in PEPFAR-supported African countries. | Health Aff Sch
+  [eu 41386238] 2026 | Sustainable solutions to protect tuberculosis control amid donor funding cuts. | Lancet Glob Health
+  [eu 41862826] 2026 | Progress of HIV care cascade and transition dynamics along the continuum of care among persons living with HIV in Ifakara, Tanzania: a prospective stu | BMC Infect Dis
+   screened in: 50
+===== C2
+  [pu 42213766] 2026 | Converting donor dependence to domestic ownership: The realignment of tuberculosis financing for sustainability. | PLOS global public health
+  [pu 38258892] 2024 | Factors impacting sustained coverage in the context of donor transitions: experience from Sri Lanka. | Health policy and planning
+  [pu 35904274] 2022 | The impacts of donor transitions on health systems in middle-income countries: a scoping review. | Health policy and planning
+  [eu 42676990] 2026 | Ways to address health financing pressures and donor transition, Kenya. | Bull World Health Organ
+  [eu 42948539] 2026 | Foreign Aid in Transition: A Critical Assessment of USAID's Withdrawal From Five Countries in Sub-Saharan Africa. | Public Health Chall
+  [eu 42688228] 2026 | Financing the transition: a roadmap for sustaining disease control in low- and middle-income countries after the 2025 contraction in development assis | Front Health Serv
+  [eu 42989235] 2026 | "We cannot rely on foreign entities to take care of our health… we need to change our mindset": immediate impacts of the 2025 U.S. government funding  | BMC Public Health
+  [eu 41719377] 2026 | The potential impact of reduced international donor funding on the household economic burden of tuberculosis in low- and middle-income countries: A mo | PLoS Med
+  [eu 41035768] 2025 | Stakeholders' perspectives on funding malaria, HIV/AIDS and tuberculosis services in Tanzania through domestic resources mobilisation: a qualitative s | BMJ Public Health
+  [eu 41628095] 2026 | The sustainability of public health programs following donor transition: A comparative case study of HIV services and maternal and newborn care in Uga | PLoS One
+  [eu 41196882] 2025 | How can middle-income countries successfully transition away from international health aid? | PLoS Med
+  [eu 40975076] 2025 | Effects of reductions in US foreign assistance on HIV, tuberculosis, family planning, and maternal and child health: a modelling study. | Lancet Glob Health
+  [eu 41749388] 2026 | The impact of U.S. foreign aid reduction on global health. | Trop Med Health
+  [eu 41876138] 2026 | Trends in government and donor funding for vertical and horizontal community health worker programmes in sub-Saharan Africa. | BMJ Glob Health
+  [eu PPR1010269] 2025 | The potential impact of reductions in international donor funding on tuberculosis in low- and middle-income countries | medRxiv
+  [eu 42516717] 2026 | Global health consequences of the 2025 US foreign aid freeze: rapid assessments in Colombia, Kenya and Nepal. | BMJ Public Health
+  [eu 40664431] 2025 | Essential aid made fully visible: understanding the proCHW financing landscape analysing accessible donor data sources. | BMJ Glob Health
+  [eu 42528850] 2026 | Donor dependency and pandemic readiness: insights from the 2026 Ebola Bundibugyo outbreak in the East African community. | Front Public Health
+  [eu 39407276] 2024 | Sustainability of opioid agonist therapy programmes in Belarus, the Republic of Moldova, Tajikistan and Ukraine in the context of transition from Glob | Harm Reduct J
+  [eu 38253449] 2024 | Sustaining essential health services in Lao PDR in the context of donor transition and COVID-19. | Health Policy Plan
+  [eu 42519389] 2026 | Beyond Efficacy: The Access, Delivery Systems, Acceptability, Persistence, and Transition Management "ADAPT" Framework for Long-Acting Injectable PrEP | HIV AIDS (Auckl)
+  [eu 38212809] 2024 | Measuring sustainability of opioid agonist therapy programs in the context of transition from global fund support. | Harm Reduct J
+  [eu 38253450] 2024 | Leveraging global investments for polio eradication to strengthen health systems' resilience through transition. | Health Policy Plan
+  [eu 40293974] 2025 | A Critical juncture in global health: Leveraging historical institutionalism to examine PEPFAR dependency and inform the development of self-reliant p | PLOS Glob Public Health
+  [eu 39196881] 2024 | Financing health in sub-Saharan Africa 1990-2050: Donor dependence and expected domestic health spending. | PLOS Glob Public Health
+  [eu 40440322] 2025 | Navigating Nepal's health financing system: A road to universal health coverage amid epidemiological and demographic transitions. | PLoS One
+  [eu 41424744] 2025 | Article processing charges and health research output in low-income countries: funding cuts, implications for health policy and system management. | Front Health Serv
+  [eu 38253438] 2024 | The impact of shifts in PEPFAR funding policy on HIV services in Eastern Uganda (2015-21). | Health Policy Plan
+  [eu 36898742] 2023 | Is Nigeria on course to achieve universal health coverage in the context of its epidemiological and financing transition? A knowledge, capacity and po | BMJ Open
+  [eu 35761255] 2022 | Using donor funding to catalyse investment in malaria prevention in Ghana: an analysis of the potential impact on public and private sector expenditur | Malar J
+  [eu 42058146] 2026 | Integrated impact of climate change on health outcomes and economic stability in PEPFAR-supported African countries. | Health Aff Sch
+  [eu 40386138] 2024 | Global Health on the Brink: The United States Withdrawal from WHO, Paris Climate Accord, and the 90-Day Freeze on Foreign Assistance: Implications and | East Afr Health Res J
+  [eu 33942865] 2021 | Progress in the face of cuts: a qualitative Nigerian case study of maintaining progress towards universal health coverage after losing donor assistanc | Health Policy Plan
+  [eu 42428932] 2026 | Ageing, health system implications, and a changing epidemic: organizational transitions and stigma dynamics in Philippine HIV care. | Front Public Health
+  [eu 33183333] 2020 | How donors support civil society as government accountability advocates: a review of strategies and implications for transition of donor funding in gl | Global Health
+  [eu 36962129] 2022 | Perspectives of frontline health workers on transition from development assistance for health in Ghana: A qualitative study. | PLOS Glob Public Health
+  [eu 34820127] 2021 | Eliminating again, for the last time: A case study of donor support for malaria in Solomon Islands. | Asia Pac Policy Stud
+  [eu 33985482] 2021 | Effects of transition on HIV and non-HIV services and health systems in Kenya: a mixed methods evaluation of donor transition. | BMC Health Serv Res
+  [eu 37701548] 2023 | Financing for HIV/AIDS in the dual transition of epidemics and economy: the 10-year experience of Vietnam. | Lancet Reg Health West Pac
+  [eu 35799247] 2022 | Leveraging geo-referenced malaria information to increase domestic financial support for malaria elimination in Thailand. | Malar J
+  [eu 31512085] 2020 | An Assessment of Domestic Financing for Reproductive, Maternal, Neonatal and Child Health in Sub-Saharan Africa: Potential Gains and Fiscal Space. | Appl Health Econ Health Policy
+  [eu 34273988] 2021 | Exploring perceived effects from loss of PEPFAR support for outreach in Kenya and Uganda. | Global Health
+   screened in: 42
+===== D1
+  [pu 42566457] 2026 | Catalysing tuberculosis elimination in Indonesia: Health economic and policy insights from the BPaL regimen. | PloS one
+  [pu 42490626] 2026 | Cost-effectiveness of BPaL-based and 9-month modified all-oral short treatment regimens for rifampicin-resistant tuberculosis in Belarus. | PLOS global public health
+  [pu 42245279] 2026 | Financial Feasibility of BPaL(M) Under Pretomanid Price Scenarios - China, 2023-2024. | China CDC weekly
+  [pu 41520273] 2025 | Cost-effectiveness of BPaL/BPaLM as compared to mixed standard of care bedaquiline containing regimen for MDR/RR-TB. | The Indian journal of medical research
+  [pu 41100518] 2025 | Impact of fluoroquinolone resistance on the cost-effectiveness of empiric treatment for multidrug- or rifampicin-resistant tuberculosis. | PLOS global public health
+  [pu 40959787] 2025 | An economic analysis of BPaL for multidrug-resistant TB in South Africa and the Philippines. | IJTLD open
+  [pu 40685613] 2025 | Comparing cost-effectiveness of short-course regimens for drug-resistant tuberculosis treatment in India. | International journal of technology asse
+  [pu 39890235] 2025 | 24-week, all-oral regimens for pulmonary rifampicin-resistant tuberculosis in TB-PRACTECAL trial sites: an economic evaluation. | The Lancet. Global health
+  [pu 39609025] 2024 | Triage test for all-oral drug-resistant tuberculosis (DR-TB) regimen: a phase IV study to assess effectiveness, feasibility, acceptability and cost-ef | BMJ open
+  [pu 39576253] 2025 | Health and Economic Impacts of Introducing Vaccae and Enhanced Drug-Resistant Tuberculosis Management Strategies in China. | The Journal of infectious diseases
+  [pu 39432463] 2024 | Patient and provider costs of the new BPaL regimen for drug-resistant tuberculosis treatment in South Africa: A cost-effectiveness analysis. | PloS one
+  [pu 39042708] 2024 | Pharmaceutical cost dynamics for the treatment of rifampicin-resistant tuberculosis in children and adolescents in South Africa, India, and the Philip | PloS one
+  [pu 38701084] 2024 | Impact and cost-effectiveness of the 6-month BPaLM regimen for rifampicin-resistant tuberculosis in Moldova: A mathematical modeling analysis. | PLoS medicine
+  [pu 37980524] 2023 | Cost of digital technologies and family-observed DOT for a shorter MDR-TB regimen: a modelling study in Ethiopia, India and Uganda. | BMC health services research
+  [pu 37270920] 2023 | Cost-Effectiveness of All-Oral Regimens for the Treatment of Multidrug-Resistant Tuberculosis in Korea: Comparison With Conventional Injectable-Contai | Journal of Korean medical science
+  [pu 36962909] 2022 | Cost-effectiveness of short, oral treatment regimens for rifampicin resistant tuberculosis. | PLOS global public health
+  [pu 36962528] 2022 | The contribution of drug import to the cost of tuberculosis treatment: A cost analysis of longer, shorter, and short drug regimens for Karakalpakstan, | PLOS global public health
+  [pu 36565704] 2023 | Economic evaluation of shortened, bedaquiline-containing treatment regimens for rifampicin-resistant tuberculosis (STREAM stage 2): a within-trial ana | The Lancet. Global health
+  [pu 36418232] 2023 | Costs and import costs of past, present, and future TB drug regimens: a case study for Karakalpakstan, Uzbekistan. | Journal of public health (Oxford, Englan
+  [pu 35350276] 2022 | Programme costs of longer and shorter tuberculosis drug regimens and drug import: a modelling study for Karakalpakstan, Uzbekistan. | ERJ open research
+  [pu 34992077] 2022 | Budgetary impact of using BPaL for treating extensively drug-resistant tuberculosis. | BMJ global health
+  [pu 34862287] 2021 | Cost-effectiveness of bedaquiline, pretomanid and linezolid for treatment of extensively drug-resistant tuberculosis in South Africa, Georgia and the  | BMJ open
+  [pu 33371043] 2020 | Economic evaluation protocol of a short, all-oral bedaquiline-containing regimen for the treatment of rifampicin-resistant tuberculosis from the STREA | BMJ open
+  [pu 33039989] 2020 | Cost-effectiveness of new MDR-TB regimens: study protocol for the TB-PRACTECAL economic evaluation substudy. | BMJ open
+  [pu 32514196] 2020 | Economic evaluation of short treatment for multidrug-resistant tuberculosis, Ethiopia and South Africa: the STREAM trial. | Bulletin of the World Health Organizatio
+  [eu 41206134] 2025 | Cost-effectiveness of modified fully oral 9-month treatment regimens for rifampicin-resistant tuberculosis in Belarus, Georgia, Kazakhstan and the Rep | BMJ Glob Health
+  [eu 42337541] 2026 | Economic burden of MDR/RR-TB and implementation of a treatment subsidy policy in Lishui City, China: a retrospective study following strobe guidelines | BMC Health Serv Res
+  [eu 42182668] 2026 | Cost-effectiveness evaluation of bedaquiline- and delamanid-containing regimens for multidrug-/rifampicin-resistant tuberculosis in China: a retrospec | J Thorac Dis
+  [eu PPR1040457] 2025 | BPaL Regimen for Multidrug-Resistant Tuberculosis in Indonesia: Cost-Effectiveness and Efficacy Analysis | Research Square
+  [eu 41664022] 2026 | Optimizing drug-resistant tuberculosis diagnosis: cost-effectiveness of rapid molecular and phenotypic assays in South Africa. | BMC Med
+  [eu 41923896] 2026 | Effect of Drug Cost-Exemption Policy on Treatment Outcomes in Multidrug-Resistant Tuberculosis Patients in Guangxi Zhuang Autonomous Region, China: A  | Clinicoecon Outcomes Res
+  [eu 41774734] 2026 | Designing and evaluating the acceptability of a psychosocial and socioeconomic support package for people with drug-resistant tuberculosis in Johannes | PLoS One
+  [eu 42384650] 2026 | Pretreatment out-of-pocket costs for people with drug-resistant tuberculosis in Bandung, Indonesia. | PLoS One
+  [eu 40822287] 2025 | Evaluating the cost-effectiveness of levofloxacin therapy for household contacts of multidrug-resistant tuberculosis in Vietnam. | Lancet Reg Health West Pac
+  [eu 41038881] 2025 | Determinants of treatment success and cost implications in MDR/RR-TB patients: a prospective cohort study in China. | Sci Rep
+  [eu 39021448] 2024 | Cost and cost-effectiveness of BPaL regimen used in drug-resistant TB treatment in the Philippines. | IJTLD Open
+  [eu 41194030] 2025 | Expanding diagnostic testing for drug-resistant tuberculosis in high burden settings: a cost-effectiveness analysis. | BMC Public Health
+  [eu 39239156] 2024 | Patient costs for drug-resistant TB diagnosis and pre-treatment evaluation in North India. | Public Health Action
+  [eu 36962626] 2022 | Lifesaving, cost-saving: Innovative simplified regimens for drug-resistant tuberculosis. | PLOS Glob Public Health
+  [eu 37880888] 2023 | Costs of treating multidrug-resistant TB in California in 2022. | Int J Tuberc Lung Dis
+   screened in: 40
+===== D2
+  [pu 31170207] 2019 | Cost outcome analysis of decentralized care for drug-resistant tuberculosis in Johannesburg, South Africa. | PloS one
+  [pu 29933862] 2018 | Cost effectiveness of decentralised care model for managing MDR-TB in India. | The Indian journal of tuberculosis
+  [pu 29862440] 2018 | Cost Analysis of Tuberculosis Diagnosis in Cambodia with and without Xpert(®) MTB/RIF for People Living with HIV/AIDS and People with Presumptive Mult | Applied health economics and health poli
+  [pu 25975868] 2015 | Cost per patient of treatment for rifampicin-resistant tuberculosis in a community-based programme in Khayelitsha, South Africa. | Tropical medicine & international health
+  [eu 42566457] 2026 | Catalysing tuberculosis elimination in Indonesia: Health economic and policy insights from the BPaL regimen. | PLoS One
+  [eu 42337541] 2026 | Economic burden of MDR/RR-TB and implementation of a treatment subsidy policy in Lishui City, China: a retrospective study following strobe guidelines | BMC Health Serv Res
+  [eu 41100518] 2025 | Impact of fluoroquinolone resistance on the cost-effectiveness of empiric treatment for multidrug- or rifampicin-resistant tuberculosis. | PLOS Glob Public Health
+  [eu 39748411] 2025 | Impact of diagnosis-related group payment on medical expenditure and treatment efficiency on people with drug-resistant tuberculosis: a quasi-experime | Int J Equity Health
+  [eu 39432463] 2024 | Patient and provider costs of the new BPaL regimen for drug-resistant tuberculosis treatment in South Africa: A cost-effectiveness analysis. | PLoS One
+  [eu 38081668] 2023 | mHealth application for improving treatment outcomes for patients with multidrug-resistant tuberculosis in Vietnam: an economic evaluation protocol fo | BMJ Open
+  [eu 38564589] 2024 | Cost-consequence analysis of ambulatory clinic- and home-based multidrug-resistant tuberculosis management models in Eswatini. | PLoS One
+  [eu 32317060] 2020 | Managing multidrug-resistant tuberculosis in South Africa: a budget impact analysis. | Int J Tuberc Lung Dis
+  [eu 34992077] 2022 | Budgetary impact of using BPaL for treating extensively drug-resistant tuberculosis. | BMJ Glob Health
+  [eu 33632218] 2021 | The epidemiologic impact and cost-effectiveness of new tuberculosis vaccines on multidrug-resistant tuberculosis in India and China. | BMC Med
+  [eu 33371043] 2020 | Economic evaluation protocol of a short, all-oral bedaquiline-containing regimen for the treatment of rifampicin-resistant tuberculosis from the STREA | BMJ Open
+  [eu 25574915] 2015 | Impact of reduced hospitalisation on the cost of treatment for drug-resistant tuberculosis in South Africa. | Int J Tuberc Lung Dis
+  [eu 29862440] 2018 | Cost Analysis of Tuberculosis Diagnosis in Cambodia with and without Xpert&lt;sup&gt;®&lt;/sup&gt; MTB/RIF for People Living with HIV/AIDS and People  | Appl Health Econ Health Policy
+  [eu 32716915] 2020 | Cost-effectiveness of treating multidrug-resistant tuberculosis in treatment initiative centers and treatment follow-up centers in Ethiopia. | PLoS One
+  [eu 30695043] 2019 | Cost minimization analysis of line probe assay for detection of multidrug-resistant tuberculosis in Arkhangelsk region of Russian Federation. | PLoS One
+  [eu 29668748] 2018 | MDR-TB patients in KwaZulu-Natal, South Africa: Cost-effectiveness of 5 models of care. | PLoS One
+  [eu 30630429] 2019 | Cost of three models of care for drug-resistant tuberculosis patients in Nigeria. | BMC Infect Dis
+  [eu 29654026] 2018 | Cost of hospitalised patients due to complicated urinary tract infections: a retrospective observational study in countries with high prevalence of mu | BMJ Open
+  [eu 31814743] 2019 | Rapid Diagnosis Of Multidrug-Resistant Tuberculosis Impacts Expenditures Prior To Appropriate Treatment: A Performance And Diagnostic Cost Analysis. | Infect Drug Resist
+  [eu 32514196] 2020 | Economic evaluation of short treatment for multidrug-resistant tuberculosis, Ethiopia and South Africa: the STREAM trial. | Bull World Health Organ
+  [eu 28265350] 2017 | Cost-effectiveness of bedaquiline in MDR and XDR tuberculosis in Italy. | J Mark Access Health Policy
+  [eu 27905897] 2016 | Cost and cost-effectiveness of tuberculosis treatment shortening: a model-based analysis. | BMC Infect Dis
+  [eu 26549905] 2015 | Cost-effectiveness of a comprehensive programme for drug-resistant tuberculosis in China. | Bull World Health Organ
+   screened in: 27
