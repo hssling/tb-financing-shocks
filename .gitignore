@@ -7,3 +7,12 @@ data/vintages/
 # personal and publisher files
 *.pdf
 *sign*.png
+
+# Kept local until acceptance: manuscripts and submission sets (depositing them would make them
+# preprints), and PubMed abstracts (publisher text). Full history: ../tb_financing_shocks_full_history_*.bundle
+docs/abstracts_C.txt
+manuscript/manuscript_c.md
+manuscript/paper_c_template.md
+manuscript/paper_d_letter.md
+submission/paper_c/
+submission/paper_d/
