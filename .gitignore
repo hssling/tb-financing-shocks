@@ -16,3 +16,7 @@ manuscript/paper_c_template.md
 manuscript/paper_d_letter.md
 submission/paper_c/
 submission/paper_d/
+
+# Versioned copies kept local: revisions and frozen submissions
+manuscript/*_v[0-9]*.md
+submission/paper_*_v[0-9]*/

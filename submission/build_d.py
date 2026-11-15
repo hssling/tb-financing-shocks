@@ -93,6 +93,11 @@ def line_numbers_and_spacing(docx: Path) -> None:
 
 
 def main() -> int:
+    # optional: a versioned source and output folder, e.g.
+    #   python -I submission/build_d.py manuscript/paper_d_letter_v2.md submission/paper_d_v2
+    global SRC, OUT
+    if len(sys.argv) == 3:
+        SRC, OUT = ROOT / sys.argv[1], ROOT / sys.argv[2]
     src = SRC.read_text(encoding="utf-8")
     n = counts(src)
     sub = b.for_submission(src)
