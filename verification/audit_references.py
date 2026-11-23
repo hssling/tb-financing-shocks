@@ -18,7 +18,9 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PAPERS = {"C": ROOT / "manuscript" / "manuscript_c.md", "D": ROOT / "manuscript" / "paper_d_letter.md"}
+PAPERS = {"C": ROOT / "manuscript" / "manuscript_c.md", "D": ROOT / "manuscript" / "paper_d_letter.md",
+          "D version 3": ROOT / "manuscript" / "paper_d_letter_v3.md"}
+PAPERS = {k: v for k, v in PAPERS.items() if v.exists()}
 UA = {"User-Agent": "reference-audit/1.0 (mailto withheld)"}
 # Crossref is known to be wrong for some records; PubMed-verified exceptions go here.
 KNOWN = {}

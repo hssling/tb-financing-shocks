@@ -5,7 +5,11 @@ Reuses the shingle method of the companion project's screen
 both projects measure overlap identically. Fails on any verbatim run of 40 or
 more words outside reference lists; reports the share of 8-word shingles shared.
 Also fails if a cover letter's "no shared passage longer than N words" is not
-the longest run this screen finds for that paper.
+the longest run this screen finds for that paper. A cover letter already sent
+passes if its stated bound still holds (the screen finds no longer run), and
+the bound is reported when it is no longer tight. Version 3 of paper D is also
+compared with the author's later manuscripts, but not with its own earlier,
+unpublished versions.
 
 Usage: python -I verification/check_self_similarity.py
 """
@@ -19,10 +23,21 @@ PW = ROOT.parent / "provenance_weighting"
 sys.path.insert(0, str(PW / "verification"))
 import check_self_similarity as ss       # noqa: E402
 
+OUTER = ROOT.parent
+D_V3 = ROOT / "manuscript" / "paper_d_letter_v3.md"
 TARGETS = [("Paper C (USAID 2025)", ROOT / "manuscript" / "manuscript_c.md"),
-           ("Paper D letter (RR-TB spending)", ROOT / "manuscript" / "paper_d_letter.md")]
-SOURCES = [("Paper A, IJTB-D-26-00779", ss.PAPER_A), ("Paper B, IJE-2026-11-2170", ss.PAPER_B)] + ss.PRIOR \
-    + [(name, path) for name, path in TARGETS]          # C and D against each other
+           ("Paper D letter (RR-TB spending)", ROOT / "manuscript" / "paper_d_letter.md"),
+           ("Paper D letter v3 (Journal of Infection)", D_V3)]
+# manuscripts submitted after papers C and D, compared with version 3 only
+LATER = [("TB-diabetes cascade, IJTLD-11-26-0796", OUTER / "tb_diabetes_gap/manuscript/v2/submission/02_manuscript.docx"),
+         ("ACF yield, IJTB (number pending)", OUTER / "tb_acf_campaign/manuscript/ext_v2/submission/03_Manuscript.docx"),
+         ("Private-sector gap, HPM-26-01517", OUTER / "tb_private_gap/manuscript/submission/main_document.docx"),
+         ("Nutrition payment, TRSTMH-D-26-00643", OUTER / "tb_nutrition_support/manuscript/submission/manuscript.docx"),
+         ("Priority tool, EPP-D-26-01579", OUTER / "tb_priority_tool/manuscript/submission/02_manuscript_anonymised.docx"),
+         ("State TB Score, JPH-26-1883", OUTER / "tb_state_score/manuscript/jph_v2/submission/01_manuscript.docx")]
+SOURCES = [("Paper A, IJTB-D-26-00779", ss.PAPER_A), ("Paper B, TMI-26-01346", ss.PAPER_B)] + ss.PRIOR \
+    + [(name, path) for name, path in TARGETS[:2]]      # C and D against each other
+EARLIER_D = {ROOT / "manuscript" / "paper_d_letter.md", ROOT / "manuscript" / "paper_d_letter_v2.md"}
 
 
 def longest_run(a: list[str], b_shingles: set) -> int:
@@ -38,7 +53,9 @@ def longest_run(a: list[str], b_shingles: set) -> int:
 
 
 LETTERS = {ROOT / "manuscript" / "manuscript_c.md": ROOT / "submission" / "paper_c" / "02_cover_letter.md",
-           ROOT / "manuscript" / "paper_d_letter.md": ROOT / "submission" / "paper_d" / "02_cover_letter.md"}
+           ROOT / "manuscript" / "paper_d_letter.md": ROOT / "submission" / "paper_d" / "02_cover_letter.md",
+           D_V3: ROOT / "submission" / "paper_d_v3" / "02_cover_letter.md"}
+FROZEN = {ROOT / "manuscript" / "manuscript_c.md", ROOT / "manuscript" / "paper_d_letter.md"}
 
 
 def main() -> int:
@@ -51,9 +68,10 @@ def main() -> int:
         tsh = ss.shingles(words)
         print(f"{tname}: {len(words):,} words, {len(tsh):,} distinct 8-grams")
         union = set()
-        for sname, spath in SOURCES:
-            if Path(spath) == tpath:
-                continue                                  # a paper against itself
+        sources = SOURCES + LATER if tpath == D_V3 else SOURCES
+        for sname, spath in sources:
+            if Path(spath) == tpath or (tpath == D_V3 and Path(spath) in EARLIER_D):
+                continue                                  # a paper against itself or its earlier versions
             if not Path(spath).exists():
                 print(f"   {sname:<44} (not on this machine)")
                 continue
@@ -71,7 +89,10 @@ def main() -> int:
         if letter and letter.exists():
             import re
             m = re.search(r"no shared passage longer than (\d+) words", letter.read_text(encoding="utf-8"))
-            if not m or int(m.group(1)) != longest:
+            if m and tpath in FROZEN and int(m.group(1)) > longest:
+                print(f"   cover letter {letter.parent.name} (as sent) states {m.group(1)} words; the screen now "
+                      f"finds {longest}: the stated bound holds")
+            elif not m or int(m.group(1)) != longest:
                 print(f"   COVER LETTER {letter.parent.name}: states "
                       f"{m.group(1) + ' words' if m else 'no figure'}, the screen finds {longest}")
                 fail = True

@@ -16,6 +16,13 @@ count of the text, numbers of references, tables and figures, 3-5 keywords
 that do not appear in the title, and the corresponding author's address and
 contact details. Every count is derived here, never typed.
 
+A versioned letter can be built into its own folder, with its own figure:
+  python -I submission/build_d.py <source.md> <output folder> [<figure.png>]
+When the source cites references in square brackets (for example Journal of
+Infection) the reference list is rendered as "[n] ...", the title page takes
+the article type and running title from the source, and a table section after
+the figure legend is kept after the embedded figure.
+
 Usage: python -I submission/build_d.py
 """
 from __future__ import annotations
@@ -46,15 +53,27 @@ def field(t: str, name: str) -> str:
 def counts(t: str) -> dict:
     letter = t[t.index("Dear Editor"):t.index("**Funding.**")]
     i = t.index("## References"); j = t.index("\n## ", i + 5)
-    return {"words": len(re.sub(r"\*\*|`|#|\^[\d,–-]+\^", "", letter).split()),
+    return {"words": len(re.sub(r"\*\*|`|#|\^[\d,–-]+\^|\[\d+(?:[,–-]\d+)*\]", "", letter).split()),
             "refs": len(re.findall(r"(?m)^\d+\. ", t[i:j])),
-            "figures": len(re.findall(r"(?m)^\*\*Figure\.", t)),
+            "figures": len(re.findall(r"(?m)^\*\*Figure(?: \d+)?\.", t)),
             "tables": len(re.findall(r"(?m)^\*\*Table \d+\.", t))}
 
 
 def title_page(t: str, n: dict) -> str:
     title = t.splitlines()[0].lstrip("# ").strip()
     author = re.search(r"(?m)^\*\*Author:\*\* (.*)\n(.*)$", t)
+    if re.search(r"(?m)^\*\*Running title:\*\*", t):            # Journal of Infection style
+        return "\n".join([
+            f"# {title}", "",
+            f"**Article type:** {field(t, 'Article type')}", "",
+            f"**Author:** {author.group(1)}  ",
+            author.group(2), "",
+            f"**Running title:** {field(t, 'Running title')}", "",
+            f"**Word count:** {n['words']:,} words (text of the letter, excluding the title page, declarations, "
+            "references, figure legend and table)", "",
+            f"**References:** {n['refs']}; **Figures:** {n['figures']}; **Tables:** {n['tables']}", "",
+            f"**Keywords:** {field(t, 'Keywords')}", "",
+            f"**Corresponding author:** {field(t, 'Corresponding author')}", ""])
     return "\n".join([
         f"# {title}", "",
         f"**Article type:** Letter", "",
@@ -95,9 +114,11 @@ def line_numbers_and_spacing(docx: Path) -> None:
 def main() -> int:
     # optional: a versioned source and output folder, e.g.
     #   python -I submission/build_d.py manuscript/paper_d_letter_v2.md submission/paper_d_v2
-    global SRC, OUT
-    if len(sys.argv) == 3:
+    global SRC, OUT, FIG
+    if len(sys.argv) in (3, 4):
         SRC, OUT = ROOT / sys.argv[1], ROOT / sys.argv[2]
+    if len(sys.argv) == 4:
+        FIG = ROOT / sys.argv[3]
     src = SRC.read_text(encoding="utf-8")
     n = counts(src)
     sub = b.for_submission(src)
@@ -105,7 +126,15 @@ def main() -> int:
     body = sub[sub.index("Dear Editor"):]
     body = b.literal_refs(body.replace("## Figure caption", "## Figure captions"))
     body = body.replace("## Figure captions", "## Figure legend")
-    body = body.rstrip() + "\n\n![](04_Figure_1.png){width=6.3in}\n"
+    if not re.search(r"\^\d", body):                         # bracketed citations: "[n] ..." references
+        i = body.index("## References"); j = body.index("\n## ", i + 5)
+        body = body[:i] + re.sub(r"(?m)^(\d+)\\\. ", r"[\1] ", body[i:j]) + body[j:]
+    image = "![](04_Figure_1.png){width=6.3in}\n"
+    if "\n## Table\n" in body:                               # the figure first, then the table
+        k = body.index("\n## Table\n")
+        body = body[:k].rstrip() + "\n\n" + image + body[k:]
+    else:
+        body = body.rstrip() + "\n\n" + image
     t = title_page(src, n) + "\n" + PAGE_BREAK + "\n\n" + body
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "03_letter.md").write_text(t, encoding="utf-8")
@@ -120,7 +149,7 @@ def main() -> int:
     pandoc = shutil.which("pandoc")
     made = []
     if pandoc:
-        for md in sorted(OUT.glob("*.md")):
+        for md in sorted(OUT.glob("0*.md")):
             docx = md.with_suffix(".docx")
             r = subprocess.run([pandoc, str(md), "-f", "markdown+pipe_tables+superscript",
                                 "-o", str(docx), "--standalone", "--wrap=none",
