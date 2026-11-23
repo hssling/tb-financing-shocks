@@ -113,3 +113,72 @@ exposure. Everything else in Sections 3-5 is unchanged:
 window 2023-2024, so the comparison is concurrent rather than prospective, and countries whose spending
 was already falling may have adopted faster. A difference in either direction is an association, not an
 effect of the regimen. The letter will report the result whatever its direction.
+
+## 11. Post hoc extension after an editorial decision (24 November 2026; written before computing anything below)
+
+**Status.** Everything in this section is post hoc. The letter was declined without review on 21 November
+2026; the editor judged the amount of new information small. The analyses below were chosen after that
+decision, and after the results in Sections 9 and 10 were known, to describe the fall in more detail. They
+are labelled post hoc wherever they are reported. No new data source is added; the WHO files, the balanced
+panels, the minimum count of 20 patients started, the 99th-percentile rule and the deflator are those of
+Sections 3, 4 and 9.
+
+**Correction of a description.** WHO's data dictionary defines `exp_cpp_mdr` as the "average cost of drugs
+spent per person starting second-line treatment for MDR-TB, excluding buffer stock". Outcome 2 is therefore
+a reported drug cost per patient, not total spending per patient, and is described as such from now on. Both
+outcomes measure drugs. Spending on everything else is read from `exp_mdrmgt` ("actual expenditure on
+programme costs to treat drug-resistant TB").
+
+**Common definitions.**
+
+- *Panels:* for each outcome, the balanced panel of Section 9 (`d_regimen.balanced`): countries with the
+  outcome in both 2019 and 2024 after the rules of Section 4.
+- *Real change:* the 2024/2019 ratio multiplied by the deflator ratio used in Section 9 (US GDP deflator
+  from WHO's processed file, 2024 dollars), minus 1.
+- *Missing values:* the public file prints 0 for some missing amounts, so a reported 0 for `exp_sld` or
+  `exp_mdrmgt` is treated as missing, as for the outcomes already.
+
+**(a) Distribution and subgroups.** For each outcome, the per-country real change: median, interquartile
+range (quartiles by the inclusive method), and the share of countries falling, in real and in current
+dollars. Breakdowns by WHO region (`g_whoregion`, expenditure file) and by World Bank income group
+(`g_income` for 2024 in WHO's processed finance file, whose source archive is verified against its recorded
+digest; the file holds only low- and middle-income countries, so high-income countries are absent).
+Countries without an income group are reported as unclassified. Subgroups are described, not tested;
+those with fewer than 5 countries are reported but not interpreted.
+
+**(b) Composition.** Composition panel: countries in the outcome 1 panel that also report `exp_mdrmgt`
+above 0 in both 2019 and 2024. A country is excluded if its programme spending per patient started in
+either year exceeds the 99th percentile of that ratio pooled over 2017-2024 (the Section 4 rule). Reported:
+
+- the median drug share of drug-resistant TB spending, `exp_sld / (exp_sld + exp_mdrmgt)`, in 2019 and 2024;
+- the median real change per patient started in drug spending, in programme spending and in their sum;
+- a pooled decomposition: total drug and programme spending divided by total patients started, across the
+  panel, in 2019 and 2024 (real); the share of the change in the pooled total per patient that comes from
+  drugs. The fall is called "mostly drugs" if that share exceeds one half.
+- As a consistency check, the rank correlation between the per-country changes in the two drug measures
+  (outcome 1 and outcome 2) where both are available.
+
+**(c) Treated numbers and total spending ("reinvestment").** In each outcome panel: the total number of
+people started on RR-TB treatment in 2019 and 2024, total real second-line drug spending (outcome 1 panel)
+and, in the composition panel, total real drug plus programme spending; the pooled spending per patient;
+the per-country change in log patients started against the change in log real spending per patient (rank
+correlation, and counts in the four quadrants of rise and fall). Wording is fixed in advance:
+
+- total real spending fell and the total started did not rise: "savings not visibly reinvested";
+- total real spending fell and the total started rose: "numbers treated rose by x% while total spending
+  fell by y%";
+- total real spending rose: reported as such.
+
+Caveats to be stated with any of these: the treatment-count definition changed in 2020 (Section 9 join
+ratio 0.88); COVID-19 reduced case finding in 2020-2021; spending through other channels (for example
+drugs donated or procured outside the programme budget) is not visible; numbers treated depend on
+detection, not only on money. Sensitivity: the same totals and per-country comparison from 2020 to 2024,
+when the treatment-count definition was constant, in panels built by the same rules for 2020 and 2024.
+
+**(d) Timing.** In addition to the share of the 2019-2024 fall in the panel median present by 2021
+(Section 9), the share present by 2022, the last year before the December 2022 BPaLM recommendation could
+affect a full year of spending, and the year with the largest single-year fall in the panel median.
+
+**What these analyses will not claim.** No cause for any change; no comparison of regions or income groups
+beyond description; no statement about patients' outcomes or costs. The analyses are descriptive and were
+chosen after the results were known; their findings are hypotheses for the prospective test of Section 10.
