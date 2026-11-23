@@ -1,4 +1,5 @@
-outputs/
+outputs/*
+!outputs/d_extend/
 __pycache__/
 *.pyc
 .pytest_cache/
@@ -7,6 +8,7 @@ data/vintages/
 # personal and publisher files
 *.pdf
 *sign*.png
+submission/JINF_guide_*.txt
 
 # Kept local until acceptance: manuscripts and submission sets (depositing them would make them
 # preprints), and PubMed abstracts (publisher text). Full history: ../tb_financing_shocks_full_history_*.bundle

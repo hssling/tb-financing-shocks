@@ -182,3 +182,9 @@ affect a full year of spending, and the year with the largest single-year fall i
 **What these analyses will not claim.** No cause for any change; no comparison of regions or income groups
 beyond description; no statement about patients' outcomes or costs. The analyses are descriptive and were
 chosen after the results were known; their findings are hypotheses for the prospective test of Section 10.
+
+**Addendum (24 November 2026, after the first run of section 11).** The totals in (c) proved to rest
+heavily on two programmes. One descriptive check was added after seeing that: the share of 2019 patients
+started and of 2019 second-line drug spending held by the two countries with the most patients started in
+2019, and the totals in (c) recomputed without them, with the same fixed wording. It is reported as an
+addition made after the results were seen.

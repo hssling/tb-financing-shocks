@@ -1,0 +1,417 @@
+{
+ "composition": {
+  "change_drug": {
+   "median": -0.47819865915309095,
+   "n": 54,
+   "q1": -0.722470397174418,
+   "q3": -0.15401020773490753,
+   "share_falling": 0.7777777777777778
+  },
+  "change_programme": {
+   "median": -0.3230917145298434,
+   "n": 54,
+   "q1": -0.7555183165127721,
+   "q3": 0.7454190765902367,
+   "share_falling": 0.5925925925925926
+  },
+  "change_total": {
+   "median": -0.45611013817208534,
+   "n": 54,
+   "q1": -0.700352356395777,
+   "q3": -0.06159965172860293,
+   "share_falling": 0.7777777777777778
+  },
+  "drug_share_median": {
+   "2019": 0.6191778861399226,
+   "2024": 0.5646110055246427
+  },
+  "excluded_programme_p99": [
+   "PER"
+  ],
+  "n": 54,
+  "pooled": {
+   "change_drug": -882.9393409694887,
+   "change_programme": -72.38218186843653,
+   "change_total": -955.3215228379253,
+   "drug": [
+    2034.5814567864188,
+    1151.64211581693
+   ],
+   "drug_share_of_change": 0.9242326482361515,
+   "mostly_drugs": true,
+   "programme": [
+    1087.1531328581207,
+    1014.7709509896841
+   ],
+   "relative_drug": -0.4339660808489202,
+   "relative_programme": -0.06657956425894129,
+   "relative_total": -0.3060226599682532,
+   "total": [
+    3121.7345896445395,
+    2166.413066806614
+   ]
+  },
+  "programme_cut": 19894.971014492752,
+  "two_drug_measures": {
+   "n": 59,
+   "same_direction": 0.7796610169491526,
+   "spearman": 0.3814199506536707
+  }
+ },
+ "cpp": {
+  "distribution": {
+   "all_current": {
+    "median": -0.4048414146377682,
+    "n": 66,
+    "q1": -0.7093783422459893,
+    "q3": -0.037387943354553754,
+    "share_falling": 0.7575757575757576
+   },
+   "all_real": {
+    "median": -0.5066173856923533,
+    "n": 66,
+    "q1": -0.7590765271581761,
+    "q3": -0.20200083683119507,
+    "share_falling": 0.8484848484848485
+   },
+   "by_income": {
+    "LIC": {
+     "interpreted": true,
+     "median": -0.5843899958342098,
+     "n": 15,
+     "q1": -0.7529089483171119,
+     "q3": -0.2808958508026291,
+     "share_falling": 1.0
+    },
+    "LMC": {
+     "interpreted": true,
+     "median": -0.5531032203954683,
+     "n": 25,
+     "q1": -0.8162397683664466,
+     "q3": -0.22750770857789626,
+     "share_falling": 0.84
+    },
+    "UMC": {
+     "interpreted": true,
+     "median": -0.43006695076059565,
+     "n": 25,
+     "q1": -0.5797860401846147,
+     "q3": -0.01995651461805592,
+     "share_falling": 0.76
+    },
+    "unclassified": {
+     "interpreted": false,
+     "median": -0.9051631406065631,
+     "n": 1,
+     "q1": -0.9051631406065631,
+     "q3": -0.9051631406065631,
+     "share_falling": 1.0
+    }
+   },
+   "by_region": {
+    "AFR": {
+     "interpreted": true,
+     "median": -0.5843899958342098,
+     "n": 29,
+     "q1": -0.8315950273325801,
+     "q3": -0.22750770857789626,
+     "share_falling": 0.8275862068965517
+    },
+    "AMR": {
+     "interpreted": true,
+     "median": -0.3971222787891241,
+     "n": 12,
+     "q1": -0.5243283292643661,
+     "q3": 0.02147418813700877,
+     "share_falling": 0.75
+    },
+    "EMR": {
+     "interpreted": true,
+     "median": -0.5531032203954683,
+     "n": 5,
+     "q1": -0.6891274276875976,
+     "q3": -0.19349854624896135,
+     "share_falling": 1.0
+    },
+    "EUR": {
+     "interpreted": true,
+     "median": -0.5360671672351704,
+     "n": 6,
+     "q1": -0.6743099901620714,
+     "q3": -0.30412891919701185,
+     "share_falling": 1.0
+    },
+    "SEA": {
+     "interpreted": true,
+     "median": -0.6569356710764891,
+     "n": 6,
+     "q1": -0.7641983197905664,
+     "q3": -0.2064215161679327,
+     "share_falling": 0.8333333333333334
+    },
+    "WPR": {
+     "interpreted": true,
+     "median": -0.48257538723619803,
+     "n": 8,
+     "q1": -0.5722107545144735,
+     "q3": -0.322712289122046,
+     "share_falling": 0.875
+    }
+   },
+   "check_median_matches_section_9": true,
+   "income_source": "g_income for 2024 in WHO's processed finance file (low- and middle-income only)"
+  },
+  "timing": {
+   "figure_panel_equals_balanced_panel": true,
+   "largest_single_year_fall": 2022,
+   "medians": {
+    "2017": 2528.00134,
+    "2018": 2084.5196547105807,
+    "2019": 2292.5390126852535,
+    "2020": 1954.4376476840298,
+    "2021": 1671.6372134390938,
+    "2022": 1328.4275098921396,
+    "2023": 1051.4676689272,
+    "2024": 947.5
+   },
+   "share_by_2021": 0.4616236357387012,
+   "share_by_2022": 0.7167907352132107
+  },
+  "treated": {
+   "change_started": -0.07095937827850507,
+   "n": 66,
+   "patients_rose_share": 0.5909090909090909,
+   "quadrants": {
+    "cost_down_patients_down": 23,
+    "cost_down_patients_up": 33,
+    "cost_up_patients_down": 4,
+    "cost_up_patients_up": 6
+   },
+   "spearman_cost_vs_patients": 0.11700362179555791,
+   "started": {
+    "2019": 149649.0,
+    "2024": 139030.0
+   }
+  },
+  "treated_2020": {
+   "change_started": 0.1026511387575022,
+   "n": 63,
+   "patients_rose_share": 0.6031746031746031,
+   "quadrants": {
+    "cost_down_patients_down": 19,
+    "cost_down_patients_up": 31,
+    "cost_up_patients_down": 6,
+    "cost_up_patients_up": 7
+   },
+   "spearman_cost_vs_patients": -0.07459766942824798,
+   "started": {
+    "2020": 125795.0,
+    "2024": 138708.0
+   }
+  }
+ },
+ "deflator_factor_2019_to_2024": 0.8289935261664063,
+ "label": "POST HOC (analysis plan section 11)",
+ "sld": {
+  "distribution": {
+   "all_current": {
+    "median": -0.3471839772629229,
+    "n": 66,
+    "q1": -0.6535598307904343,
+    "q3": 0.1177064996030514,
+    "share_falling": 0.7272727272727273
+   },
+   "all_real": {
+    "median": -0.45881974337326153,
+    "n": 66,
+    "q1": -0.7128033425212756,
+    "q3": -0.07342854767495535,
+    "share_falling": 0.7575757575757576
+   },
+   "by_income": {
+    "LIC": {
+     "interpreted": true,
+     "median": -0.4763257602090305,
+     "n": 15,
+     "q1": -0.7164913211920352,
+     "q3": -0.2812593340063833,
+     "share_falling": 0.8666666666666667
+    },
+    "LMC": {
+     "interpreted": true,
+     "median": -0.49820583930843854,
+     "n": 26,
+     "q1": -0.7793995802850608,
+     "q3": 0.3150869984048166,
+     "share_falling": 0.6923076923076923
+    },
+    "UMC": {
+     "interpreted": true,
+     "median": -0.42831511816799384,
+     "n": 25,
+     "q1": -0.6807665516596357,
+     "q3": -0.05528617701368521,
+     "share_falling": 0.76
+    }
+   },
+   "by_region": {
+    "AFR": {
+     "interpreted": true,
+     "median": -0.46271476764117814,
+     "n": 29,
+     "q1": -0.7251853197512438,
+     "q3": -0.12785565965876577,
+     "share_falling": 0.7586206896551724
+    },
+    "AMR": {
+     "interpreted": true,
+     "median": -0.30435511463776305,
+     "n": 12,
+     "q1": -0.5021203363198874,
+     "q3": 1.1580206997315319,
+     "share_falling": 0.5833333333333334
+    },
+    "EMR": {
+     "interpreted": true,
+     "median": -0.789630245558838,
+     "n": 6,
+     "q1": -0.9206704674491231,
+     "q3": -0.6906002213117372,
+     "share_falling": 1.0
+    },
+    "EUR": {
+     "interpreted": true,
+     "median": -0.6571929232096129,
+     "n": 8,
+     "q1": -0.7952942194128254,
+     "q3": -0.26644181902876113,
+     "share_falling": 0.875
+    },
+    "SEA": {
+     "interpreted": true,
+     "median": -0.36079236271077547,
+     "n": 6,
+     "q1": -0.6301661850382295,
+     "q3": 0.3852830890184272,
+     "share_falling": 0.6666666666666666
+    },
+    "WPR": {
+     "interpreted": true,
+     "median": -0.3301012554046159,
+     "n": 5,
+     "q1": -0.454446065741156,
+     "q3": -0.05528617701368521,
+     "share_falling": 0.8
+    }
+   },
+   "check_median_matches_section_9": true,
+   "income_source": "g_income for 2024 in WHO's processed finance file (low- and middle-income only)"
+  },
+  "timing": {
+   "figure_panel_equals_balanced_panel": true,
+   "largest_single_year_fall": 2021,
+   "medians": {
+    "2017": 3024.835947685473,
+    "2018": 2527.155537236614,
+    "2019": 2390.1915801036102,
+    "2020": 2468.635549449524,
+    "2021": 1578.1286672930526,
+    "2022": 1590.9277879428942,
+    "2023": 1203.4285432355045,
+    "2024": 1155.4248166190873
+   },
+   "share_by_2021": 0.6576650237320195,
+   "share_by_2022": 0.647299405683051
+  },
+  "treated": {
+   "change_pooled_per_patient": -0.4369956915985477,
+   "change_started": -0.09094730748556223,
+   "change_total_real_sld": -0.48819941755043095,
+   "composition_panel": {
+    "change_started": -0.09855604589585176,
+    "change_total": -0.37441832254310314,
+    "n": 54,
+    "started": {
+     "2019": 141625.0,
+     "2024": 127667.0
+    },
+    "total_real_drug_and_programme": {
+     "2019": 442115661.2584079,
+     "2024": 276579457.0
+    },
+    "verdict": "savings not visibly reinvested"
+   },
+   "largest_two": {
+    "iso3": [
+     "IND",
+     "RUS"
+    ],
+    "share_spending": 0.5411820359231294,
+    "share_started": 0.6230273041776356,
+    "without": {
+     "change_started": 0.03146194767920152,
+     "change_total_real_sld": -0.4355298531709805,
+     "verdict": "numbers treated rose while total spending fell"
+    }
+   },
+   "n": 66,
+   "patients_rose_share": 0.5606060606060606,
+   "quadrants": {
+    "cost_down_patients_down": 20,
+    "cost_down_patients_up": 30,
+    "cost_up_patients_down": 9,
+    "cost_up_patients_up": 7
+   },
+   "spearman_cost_vs_patients": -0.0329610687819643,
+   "started": {
+    "2019": 145106.0,
+    "2024": 131909.0
+   },
+   "total_real_sld": {
+    "2019": 296171244.1053674,
+    "2024": 151580615.23794055
+   },
+   "verdict": "savings not visibly reinvested"
+  },
+  "treated_2020": {
+   "change_pooled_per_patient": -0.5633206848832231,
+   "change_started": 0.09846712350438391,
+   "change_total_real_sld": -0.5203221288298097,
+   "largest_two": {
+    "iso3": [
+     "IND",
+     "RUS"
+    ],
+    "share_spending": 0.5871887864902996,
+    "share_started": 0.6099532893148267,
+    "without": {
+     "change_started": 0.20482442096274944,
+     "change_total_real_sld": -0.41190652326204324,
+     "verdict": "numbers treated rose while total spending fell"
+    }
+   },
+   "n": 66,
+   "patients_rose_share": 0.5909090909090909,
+   "quadrants": {
+    "cost_down_patients_down": 20,
+    "cost_down_patients_up": 30,
+    "cost_up_patients_down": 7,
+    "cost_up_patients_up": 9
+   },
+   "spearman_cost_vs_patients": 0.01580210833942177,
+   "started": {
+    "2020": 120101.0,
+    "2024": 131927.0
+   },
+   "total_real_sld": {
+    "2020": 316055382.8928893,
+    "2024": 151604773.23794055
+   },
+   "verdict": "numbers treated rose while total spending fell"
+  }
+ },
+ "years": [
+  2019,
+  2024
+ ]
+}

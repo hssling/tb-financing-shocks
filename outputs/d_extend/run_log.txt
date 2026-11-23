@@ -1,0 +1,35 @@
+POST HOC (plan section 11)
+
+== sld: n 66, median -45.9% (IQR -71.3% to -7.3%), falling 75.8% real / 72.7% current
+   AFR           n 29 median -46.3% IQR -72.5% to -12.8% falling 76%
+   AMR           n 12 median -30.4% IQR -50.2% to +115.8% falling 58%
+   EMR           n  6 median -79.0% IQR -92.1% to -69.1% falling 100%
+   EUR           n  8 median -65.7% IQR -79.5% to -26.6% falling 88%
+   SEA           n  6 median -36.1% IQR -63.0% to +38.5% falling 67%
+   WPR           n  5 median -33.0% IQR -45.4% to -5.5% falling 80%
+   LIC           n 15 median -47.6% IQR -71.6% to -28.1% falling 87%
+   LMC           n 26 median -49.8% IQR -77.9% to +31.5% falling 69%
+   UMC           n 25 median -42.8% IQR -68.1% to -5.5% falling 76%
+   timing: by 2021 65.8%, by 2022 64.7%, largest fall in 2021; figure panel = balanced: True
+   treated: n 66, started {2019: 145106.0, 2024: 131909.0} (-9.1%); rose in 56%; Spearman -0.03; {'cost_down_patients_up': 30, 'cost_down_patients_down': 20, 'cost_up_patients_up': 7, 'cost_up_patients_down': 9}; total real SLD -48.8%, pooled per patient -43.7%; savings not visibly reinvested
+   treated_2020: n 66, started {2020: 120101.0, 2024: 131927.0} (+9.8%); rose in 59%; Spearman +0.02; {'cost_down_patients_up': 30, 'cost_down_patients_down': 20, 'cost_up_patients_up': 9, 'cost_up_patients_down': 7}; total real SLD -52.0%, pooled per patient -56.3%; numbers treated rose while total spending fell
+
+== cpp: n 66, median -50.7% (IQR -75.9% to -20.2%), falling 84.8% real / 75.8% current
+   AFR           n 29 median -58.4% IQR -83.2% to -22.8% falling 83%
+   AMR           n 12 median -39.7% IQR -52.4% to +2.1% falling 75%
+   EMR           n  5 median -55.3% IQR -68.9% to -19.3% falling 100%
+   EUR           n  6 median -53.6% IQR -67.4% to -30.4% falling 100%
+   SEA           n  6 median -65.7% IQR -76.4% to -20.6% falling 83%
+   WPR           n  8 median -48.3% IQR -57.2% to -32.3% falling 88%
+   LIC           n 15 median -58.4% IQR -75.3% to -28.1% falling 100%
+   LMC           n 25 median -55.3% IQR -81.6% to -22.8% falling 84%
+   UMC           n 25 median -43.0% IQR -58.0% to -2.0% falling 76%
+   unclassified  n  1 median -90.5% IQR -90.5% to -90.5% falling 100%
+   timing: by 2021 46.2%, by 2022 71.7%, largest fall in 2022; figure panel = balanced: True
+   treated: n 66, started {2019: 149649.0, 2024: 139030.0} (-7.1%); rose in 59%; Spearman +0.12; {'cost_down_patients_up': 33, 'cost_down_patients_down': 23, 'cost_up_patients_up': 6, 'cost_up_patients_down': 4}
+   treated_2020: n 63, started {2020: 125795.0, 2024: 138708.0} (+10.3%); rose in 60%; Spearman -0.07; {'cost_down_patients_up': 31, 'cost_down_patients_down': 19, 'cost_up_patients_up': 7, 'cost_up_patients_down': 6}
+
+== composition: n 54 (excluded p99 ['PER']); drug share median {2019: 0.6191778861399226, 2024: 0.5646110055246427}; drug -47.8%, programme -32.3%, total -45.6%
+   pooled {'drug': (2034.5814567864188, 1151.64211581693), 'programme': (1087.1531328581207, 1014.7709509896841), 'total': (3121.7345896445395, 2166.413066806614), 'change_drug': -882.9393409694887, 'change_programme': -72.38218186843653, 'change_total': -955.3215228379253, 'relative_drug': -0.4339660808489202, 'relative_programme': -0.06657956425894129, 'relative_total': -0.3060226599682532, 'drug_share_of_change': 0.9242326482361515, 'mostly_drugs': True}
+   two drug measures {'n': 59, 'spearman': 0.3814199506536707, 'same_direction': 0.7796610169491526}
+   composition panel {'n': 54, 'total_real_drug_and_programme': {2019: 442115661.2584079, 2024: 276579457.0}, 'change_total': -0.37441832254310314, 'started': {2019: 141625.0, 2024: 127667.0}, 'change_started': -0.09855604589585176, 'verdict': 'savings not visibly reinvested'}

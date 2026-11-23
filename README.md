@@ -39,8 +39,10 @@ Rscript tools/convert_vintages.R           # R data to CSV, unchanged
 cd ../tb-financing-shocks
 python -I src/c_usaid.py
 python -I src/d_regimen.py
+python -I src/d_extend.py
 python manuscript/make_c_figure.py         # figures need matplotlib
 python manuscript/make_d_figure.py
+python manuscript/make_d_extend_exhibits.py
 ```
 
 WHO's report-repository files carry no licence and are not redistributed here or in the companion
@@ -60,6 +62,14 @@ in 2022–2023, was uninformative: few high adopters also reported spending. Rep
 fell in non-adopters, with no clear difference from adopters. In 66 countries, spending per RR-TB patient
 fell by about half in real terms between 2019 and 2024, and much of the fall preceded WHO's December 2022
 recommendation of BPaLM.
+
+**Paper D, post hoc extension** (`src/d_extend.py`, analysis plan section 11, chosen after the first
+results were known). Both spending measures are drug costs. In the same 66 countries the median real fall
+was 45.9% (interquartile range 71.3% fall to 7.3% fall) and 50.7%, with a median fall in every WHO region
+and income group; about two thirds of the fall in each median had occurred by 2022. In 54 countries also
+reporting other programme spending on drug-resistant TB, drugs accounted for 92.4% of the pooled fall in
+spending per patient. Total second-line drug spending fell by 48.8% in real terms while the number of
+people started on treatment fell by 9.1%. Outputs: `outputs/d_extend/`.
 
 ## Licence
 
