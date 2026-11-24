@@ -26,6 +26,27 @@ section 11), when manuscript/paper_d_letter_v3.md is present:
    and the cover letter agree with the source; the cover letter does not name
    the earlier, declined submission.
 
+Version 4 (Short Communication for The International Journal of Health
+Planning and Management), when manuscript/paper_d_shortcomm_v4.md is present:
+
+8. Every derived number in the abstract, main text and figure legend equals the
+   outputs (version 3 passages and the added ones), every other number is a
+   stated constant, the table equals the one rendered from the outputs, and the
+   wording conditions of version 3 hold.
+9. Journal limits: main text at most 2,000 words, abstract at most 250 words
+   without citations, at most 20 references and seven keywords, running title
+   under 70 characters, title without abbreviations.
+10. References, Figure 1 and Table 1 cited in order of first citation; AMA
+    reference form; no causal wording; British spelling; post hoc analyses and
+    the use of AI described in the Methods; no opening in response to a journal
+    article.
+11. The built set: all five files present and newer than the source; the main
+    document anonymised (no name, affiliation, contact, archive link or
+    self-citation, empty document properties); the title page carries the
+    derived word counts; the cover letter states Theme 1, carries the derived
+    counts, discloses the related manuscripts by their current numbers and does
+    not name the earlier submissions of this work.
+
 Usage: python -I verification/check_d.py ; exit 1 on any failure.
 """
 from __future__ import annotations
@@ -37,6 +58,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "submission"))
 import d_regimen as d                 # noqa: E402
 
 PAPER = ROOT / "manuscript" / "paper_d_letter.md"
@@ -166,6 +188,15 @@ def main() -> int:
             print(f"FAILED (version 3): {len(e3)} problem(s)\n  " + "\n  ".join(e3))
             return 1
         print(f"PASSED (version 3): outputs equal a fresh run; {info}")
+    if V4.exists():
+        E = extension_outputs()
+        cover = V4_DIR / "_md" / "05_cover_letter.md"
+        e4, info = check_v4(V4.read_text(encoding="utf-8"), cover.read_text(encoding="utf-8")
+                            if cover.exists() else None, V4_DIR, R, E)
+        if e4:
+            print(f"FAILED (version 4): {len(e4)} problem(s)\n  " + "\n  ".join(e4))
+            return 1
+        print(f"PASSED (version 4): {info}")
     return 0
 
 
@@ -398,6 +429,274 @@ def check_v3(t: str, cover: str | None, docx: Path | None, R: dict, E: dict) -> 
     info = (f"{len(want)} derived passages and every number traced; Table 1 matches; letter {nwords} words; "
             f"{len(listed)} references in order; {nfig} figure and {ntab} table; Journal of Infection form, "
             f"Word file and cover letter checked")
+    return errs, info
+
+
+# ------------------------------------------------------------------ version 4
+
+V4 = ROOT / "manuscript" / "paper_d_shortcomm_v4.md"
+V4_DIR = ROOT / "submission" / "paper_d_v4"
+V4_FILES = ("01_title_page.docx", "02_main_document.docx", "03_manuscript_with_author_details.docx",
+            "04_Figure_1.tif", "05_cover_letter.docx")
+# related manuscripts under review, by their current numbers
+V4_RELATED = ("BLT/2026/298045", "HPM-26-01517", "IJTB-D-26-00779", "IJTB-D-26-00777", "IJTLD-11-26-0796",
+              "TRSTMH-D-26-00643", "EPP-D-26-01579", "JPH-26-1883")
+# earlier submissions of this work, and a manuscript no longer under review
+V4_FORBIDDEN = ("IJTLD-11-26-0773", "Journal of Infection", "Tropical Medicine & International Health",
+                "Tropical Medicine and International Health", "TMIH", "TMI-26-01346",
+                "Lancet Infectious", "declined", "previously submitted")
+# stated constants beyond those of version 3: the outlier percentile and software versions
+CONSTANTS_V4 = CONSTANTS | {"99", "3.14", "3.10"}
+CAUSAL_V4 = CAUSAL + (r"\bbecause\b", r"\bowing to\b", r"\bcontribut\w*", r"\bexplained by\b", r"\bas a result\b")
+US_SPELLING = (r"\bprograms?\b", r"\banalyz\w*", r"\bcolor\w*",r"\bfavor\w*", r"\bcenter\b",
+               r"\bmodel(ed|ing)\b", r"\borganization\b", r"\brandomiz\w*", r"\butiliz\w*", r"\bprioritiz\w*",
+               r"\bbehavior\w*", r"\blabeled\b")
+CITE = r"\^(\d+(?:[,–-]\d+)*)\^"
+
+
+def v4_wants(R: dict, E: dict) -> tuple[dict, list[str]]:
+    """Version 3 passages plus those added in version 4, and the wording conditions."""
+    want, conditions = v3_wants(R, E)
+    m = lambda v: f"{v:.1f}".replace("-", "−")
+    f = lambda v: f"{abs(100 * v):.1f}"
+    p = lambda v: f"{100 * v:.1f}"
+    usd = lambda v: f"US${v:,.0f}"
+    word = lambda n: ("no", "one", "two", "three", "four", "five")[n] if n < 6 else str(n)
+    direction = lambda v: "rose" if v > 0 else "fell"
+    pct = lambda dlog: m(100 * (math.exp(dlog) - 1))
+    s, c, C, a = E["sld"], E["cpp"], E["composition"], R["adoption"]
+    sd, cd = s["distribution"]["all_real"], c["distribution"]["all_real"]
+    T, T20 = s["treated"], s["treated_2020"]
+    six_c = R["cpp"]["six_2024"]
+    prim = (R["sld"]["primary"]["n_high"], R["cpp"]["primary"]["n_high"])
+    sm, cm = s["timing"]["medians"], c["timing"]["medians"]
+    CP = T["composition_panel"]
+    W20 = T20["largest_two"]["without"]
+    want.update({
+        "abstract n": f"analysed for the {sd['n']} countries reporting each measure in both 2019 and 2024"
+                      if sd["n"] == cd["n"] else "(n differ)",
+        "abstract headline": f"fell by {f(sd['median'])}% in real terms, and the reported drug cost per patient "
+                             f"starting treatment for multidrug-resistant tuberculosis by {f(cd['median'])}%",
+        "abstract share": f"Spending fell in {p(sd['share_falling'])}% and {p(cd['share_falling'])}% of countries",
+        "abstract timing": f"Most of the fall ({p(s['timing']['share_by_2022'])}% and "
+                           f"{p(c['timing']['share_by_2022'])}%) had occurred by 2022",
+        "abstract drugs": f"Drugs accounted for {p(C['pooled']['drug_share_of_change'])}% of the pooled fall",
+        "abstract totals": f"Total second-line drug spending {direction(T['change_total_real_sld'])} by "
+                           f"{f(T['change_total_real_sld'])}%, while the number of people started on treatment "
+                           f"{direction(T['change_started'])} by {f(T['change_started'])}%; without India and the "
+                           f"Russian Federation, numbers {direction(T['largest_two']['without']['change_started'])} by "
+                           f"{f(T['largest_two']['without']['change_started'])}%",
+        "join": f"across {R['join']['countries']} countries, the median ratio of the 2020 to the 2019 count was "
+                f"{R['join']['median_ratio_2020_to_2019']:.2f}",
+        "deflator": f"prices rose by {p(1 / E['deflator_factor_2019_to_2024'] - 1)}% from 2019 to 2024",
+        "permutations": f"({d.PERMS:,} permutations)",
+        "BPaL reporting": f"with {a['reporting'][2022]} and {a['reporting'][2023]} countries reporting",
+        "analysable": f"only {WORDS[min(prim)]} to {WORDS[max(prim)]} of the countries with spending data were "
+                      f"high adopters",
+        "six-month reporting": f"reported by {a['six_reporting'][2024]} countries for 2024; {a['six_ge_25_2024']} of "
+                               f"the {a['six_with_share_2024']} countries with a share reached 25%",
+        "cpp adopters": f"by {pct(six_c['median_high'])}% in {six_c['n_high']} high adopters and "
+                        f"{pct(six_c['median_non'])}% in {six_c['n_non']} non-adopters (p = {six_c['p']:.2f})",
+        "placebo": "adopters' spending had risen relative to non-adopters'"
+                   if R["sld"]["six_2024_placebo"]["diff"] > 0 and R["cpp"]["six_2024_placebo"]["diff"] > 0
+                   else "(placebo direction changed)",
+        "current dollars": f"In current dollars the medians fell by {f(s['distribution']['all_current']['median'])}% "
+                           f"and {f(c['distribution']['all_current']['median'])}%",
+        "panel medians": f"from {usd(sm['2019'])} in 2019 to {usd(sm['2024'])} in 2024 for drug spending per patient "
+                         f"started, and from {usd(cm['2019'])} to {usd(cm['2024'])} for the reported drug cost",
+        "largest year": f"The largest single-year falls came in {s['timing']['largest_single_year_fall']} and "
+                        f"{c['timing']['largest_single_year_fall']}",
+        "excluded": f"({word(len(C['excluded_programme_p99']))} more was excluded by the 99th-percentile rule)",
+        "composition totals": f"fell by {f(CP['change_total'])}%, from "
+                              f"US${CP['total_real_drug_and_programme']['2019'] / 1e6:.1f} million to "
+                              f"US${CP['total_real_drug_and_programme']['2024'] / 1e6:.1f} million, while the number "
+                              f"started {direction(CP['change_started'])} by {f(CP['change_started'])}%",
+        "from 2020 without two": f"without India and the Russian Federation, numbers {direction(W20['change_started'])} "
+                                 f"by {f(W20['change_started'])}% while spending "
+                                 f"{direction(W20['change_total_real_sld'])} by {f(W20['change_total_real_sld'])}%",
+    })
+    if not (CP["change_total"] < 0 and CP["verdict"] == "savings not visibly reinvested"):
+        conditions.append(f"composition panel: total {CP['change_total']:+.3f}, verdict {CP['verdict']!r}")
+    if T20["largest_two"]["iso3"] != T["largest_two"]["iso3"]:
+        conditions.append("the two largest programmes differ between the 2019 and 2020 bases")
+    return want, conditions
+
+
+def docx_text(path: Path) -> tuple[str, str]:
+    """Visible text and the core properties of a Word file."""
+    import zipfile
+    with zipfile.ZipFile(path) as z:
+        doc = z.read("word/document.xml").decode("utf-8")
+        core = z.read("docProps/core.xml").decode("utf-8") if "docProps/core.xml" in z.namelist() else ""
+    return "".join(re.findall(r"<w:t(?: [^>]*)?>([^<]*)</w:t>", doc)), core
+
+
+def anonymisation_errors(text: str, core: str, n_self: int) -> list[str]:
+    """The main document must identify neither the author nor the author's archive."""
+    import build_d_v4 as bv
+    errs = [f"main document contains {leak!r}" for leak in bv.LEAKS if leak.lower() in text.lower()]
+    if text.count(bv.BLIND_REF) != n_self:
+        errs.append(f"main document blinds {text.count(bv.BLIND_REF)} reference(s); the source has {n_self} "
+                    f"self-citation(s)")
+    if bv.BLIND_LINK not in text:
+        errs.append("main document does not blind the archive links")
+    for tag in ("dc:creator", "cp:lastModifiedBy"):
+        hit = re.search(rf"<{tag}>([^<]+)</{tag}>", core)
+        if hit:
+            errs.append(f"main document properties name {hit.group(1)!r} ({tag})")
+    return errs
+
+
+def check_v4(t: str, cover: str | None, built: Path | None, R: dict, E: dict) -> tuple[list[str], str]:
+    import build_d_v4 as bv
+    errs: list[str] = []
+    S = bv.sections(t)
+    n = bv.counts(t)
+    want, conditions = v4_wants(R, E)
+    errs += [f"wording not supported by the outputs: {x}" for x in conditions]
+    abstract, main, legend = S["Abstract"], bv.main_text(t), S["Figure legend"]
+    scanned = abstract + "\n" + main + "\n" + legend
+    for label, w in want.items():
+        if w not in scanned:
+            errs.append(f"text: expected {label} as {w!r}")
+    # every number is derived or a stated constant
+    traced = set()
+    for w in want.values():
+        traced |= {x.replace(",", "") for x in re.findall(r"\d[\d,]*(?:\.\d+)?", w)}
+    body = re.sub(CITE + r"|COVID-19", "", scanned)
+    for x in re.findall(r"\d[\d,]*(?:\.\d+)?", body):
+        x = x.replace(",", "").rstrip(".")
+        if x not in traced and x not in CONSTANTS_V4:
+            errs.append(f"untraced number: {x}")
+    sys.path.insert(0, str(ROOT / "manuscript"))
+    import make_d_extend_exhibits as mx
+    if mx.table(E).strip() not in t:
+        errs.append("Table 1 differs from the table rendered from the outputs")
+    # journal limits
+    title = bv.title(t)
+    if n["main_words"] > 2000:
+        errs.append(f"main text {n['main_words']} words > 2,000")
+    if n["abstract_words"] > 250:
+        errs.append(f"abstract {n['abstract_words']} words > 250")
+    if n["refs"] > 20:
+        errs.append(f"{n['refs']} references > 20")
+    if not 1 <= n["keywords"] <= 7:
+        errs.append(f"{n['keywords']} keywords; at most seven")
+    if n["running_title_chars"] >= 70:
+        errs.append(f"running title {n['running_title_chars']} characters; fewer than 70 allowed")
+    if re.search(r"\b[A-Z]{2,}\b|\b[A-Z][a-z]*[A-Z]", title):
+        errs.append(f"title contains an abbreviation: {title!r}")
+    if re.search(CITE + r"|\[\d+\]", abstract):
+        errs.append("citation in the abstract")
+    if n["figures"] + n["tables"] > 3:
+        errs.append(f"{n['figures']} figures and {n['tables']} tables: more than three display items")
+    # references: numbered, cited in order of first citation, AMA form
+    listed = [int(x) for x in re.findall(r"(?m)^(\d+)\. ", S["References"])]
+    if listed != list(range(1, len(listed) + 1)):
+        errs.append(f"reference list numbered {listed}")
+    before_refs = t[t.index("## Abstract"):t.index("## References")]
+    if re.search(r"(?<![\w\]])\[\d+(?:[,–-]\d+)*\]", before_refs):
+        errs.append("bracketed citation; the journal uses superscript numbers")
+    order: list[int] = []
+    for mm in re.finditer(CITE, before_refs):
+        for part in mm.group(1).split(","):
+            rng = [int(x) for x in re.split(r"[–-]", part)]
+            for k in range(rng[0], rng[-1] + 1):
+                if k not in order:
+                    order.append(k)
+    if sorted(order) != listed:
+        errs.append(f"cited {sorted(order)} vs listed {listed}")
+    if order != sorted(order):
+        errs.append(f"references not in order of first citation: {order}")
+    for k, e in re.findall(r"(?m)^(\d+)\. (.*)$", S["References"]):
+        authors = e.split(". ")[0]
+        if "et al" in authors and authors.split(", et al")[0].count(",") + 1 != 3:
+            errs.append(f"reference {k}: AMA lists three authors before et al.")
+        if "et al" not in authors and authors.count(",") + 1 > 6:
+            errs.append(f"reference {k}: more than six authors without et al.")
+        if re.search(r"\d{4};\d+", e) and "doi:10." not in e:
+            errs.append(f"reference {k}: journal article without its DOI")
+    if ANCHOR_DOI in S["References"] or re.search(r"Dear Editor|recently reported", t):
+        errs.append("the manuscript opens by responding to a journal article")
+    # figure and table: cited, in order of first citation
+    fig, tab = re.search(r"Figure 1", main), re.search(r"Table 1", main)
+    if not fig or not tab:
+        errs.append("Figure 1 or Table 1 not cited in the main text")
+    elif fig.start() > tab.start():
+        errs.append("Table 1 cited before Figure 1")
+    if re.search(r"Figure [2-9]|Table [2-9]", main):
+        errs.append("a figure or table cited that does not exist")
+    # wording
+    for pat in CAUSAL_V4:
+        hit = re.search(pat, scanned, flags=re.I)
+        if hit:
+            errs.append(f"causal wording: {hit.group(0)!r}")
+    british = scanned.replace("World Health Organization", "")
+    for pat in US_SPELLING:
+        hit = re.search(pat, british, flags=re.I)
+        if hit:
+            errs.append(f"US spelling: {hit.group(0)!r}")
+    methods = S["Methods"]
+    methods_body = "\n".join(ln for ln in methods.splitlines() if not ln.startswith("#"))
+    if "post hoc" not in methods_body or "post hoc" not in abstract:
+        errs.append("the added analyses are not called post hoc in the abstract and Methods")
+    if not all(x in methods for x in ("Claude (Anthropic)", "large language model", "full responsibility")):
+        errs.append("the use of AI is not described in the Methods")
+    # cover letter
+    if cover is not None:
+        if 'Theme 1, "Health financing and economics"' not in cover:
+            errs.append("cover letter does not state Theme 1")
+        if f'"{title}"' not in cover:
+            errs.append("cover letter does not carry the manuscript title")
+        counts = (f"{n['main_words']:,} words of main text, an abstract of {n['abstract_words']} words, "
+                  f"{bv.number_word(n['keywords'])} keywords, {n['refs']} references")
+        if counts not in cover:
+            errs.append(f"cover letter counts differ: expected {counts!r}")
+        for rid in V4_RELATED:
+            if rid not in cover:
+                errs.append(f"cover letter does not disclose {rid}")
+        line = next((ln for ln in cover.splitlines() if "HPM-26-01517" in ln), "")
+        if "this journal" not in line or "different topic" not in line:
+            errs.append("cover letter does not say HPM-26-01517 is at this journal and differs in topic")
+        for bad in V4_FORBIDDEN:
+            if bad.lower() in cover.lower():
+                errs.append(f"cover letter names {bad!r}")
+    for bad in V4_FORBIDDEN:
+        if bad.lower() in t.lower():
+            errs.append(f"manuscript names {bad!r}")
+    # the built set
+    if built is not None:
+        for name in V4_FILES:
+            f_ = built / name
+            if not f_.exists():
+                errs.append(f"{name} not built")
+            elif f_.stat().st_mtime < V4.stat().st_mtime:
+                errs.append(f"{name} is older than the source; rerun submission/build_d_v4.py")
+        if all((built / x).exists() for x in V4_FILES):
+            main_doc, core = docx_text(built / "02_main_document.docx")
+            errs += anonymisation_errors(main_doc, core, len(bv.self_citations(t)))
+            if "Abstract" not in main_doc or "Figure legend" not in main_doc or "Table 1." not in main_doc:
+                errs.append("main document lacks the abstract, table or figure legend")
+            page, _ = docx_text(built / "01_title_page.docx")
+            plain = re.sub(r"\*\*", "", bv.word_counts_line(n))
+            for need in (bv.field(t, "Running title"), "0000-0002-4771-8285", plain, "Acknowledgements", "Funding",
+                         "Conflict of interest"):
+                if need not in page:
+                    errs.append(f"title page lacks {need[:60]!r}")
+            full, _ = docx_text(built / "03_manuscript_with_author_details.docx")
+            if "Siddalingaiah" not in full or "10.5281/zenodo.24478545" not in full:
+                errs.append("manuscript with author details lacks the author or the archive DOI")
+            from PIL import Image
+            with Image.open(built / "04_Figure_1.tif") as im:
+                if round(im.info.get("dpi", (0, 0))[0]) < 300:
+                    errs.append("Figure 1 below 300 dpi")
+            letter, _ = docx_text(built / "05_cover_letter.docx")
+            if "Theme 1" not in letter:
+                errs.append("built cover letter does not state Theme 1")
+    info = (f"{len(want)} derived passages and every number traced; Table 1 matches; main text {n['main_words']:,} "
+            f"words (limit 2,000); abstract {n['abstract_words']} (250); {n['refs']} references (20) in order; "
+            f"{n['keywords']} keywords (7); running title {n['running_title_chars']} characters (<70); Figure 1 "
+            f"before Table 1; no causal wording; main document anonymised; title page and cover letter checked")
     return errs, info
 
 
